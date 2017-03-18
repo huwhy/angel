@@ -1,0 +1,69 @@
+server:
+  port: 8888
+  connection-timeout:
+  session:
+    timeout: 60
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/json
+    min-response-size: 2048
+  tomcat:
+    max-threads: 1000
+    uri-encoding: UTF-8
+    remote-ip-header: x-forwarded-for
+    accesslog:
+      directory: ${log.path}
+      pattern: common
+      enabled: true
+      prefix: access_log
+      suffix: .log
+
+#数据库连接池
+db:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://120.26.131.82:3306/athena_wechat?useUnicode=true&characterEncoding=utf8
+  username: root
+  password: Comblife!@#123
+  defaultAutoCommit: false
+  maxActive: 100
+  initialSize: 1
+  maxWait: 60000
+  minIdle: 1
+  maxIdle: 25
+
+
+user:
+  rolePrefix: ROLE_
+common:
+  baseUrl: http://online.ecrm.so
+
+#RPC 配置
+zookeeper:
+  address: 120.26.131.82:2181,121.40.52.178:2181
+wechat:
+  group: athena-wechat-test
+  version: 1.0.0
+  requestTimeout: 3000
+  id: athena-wechat-test
+  serializer: hessian2
+
+main:
+  group: athena-main-rpc
+  version: 1.0.0
+  requestTimeout: 3000
+  id: athena-main
+  serializer: hessian2
+
+marketing:
+  group: athena-marketing-rpc
+  version: 1.0.0
+  id: athena-marketing
+
+tianshan:
+  group: bee-tianshan-test
+  version: 1.0.0
+  id: bee-tianshan
+  requestTimeout: 3000
+  serializer: hessian2
+
+

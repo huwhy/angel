@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+<style>
+  html, body, div {
+    margin: 0;
+    padding: 0;
+  }
+
+  #header {
+    height: 60px;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(57,70,78,.2);
+    z-index: 100;
+  }
+  #header h1 {
+    margin: 0;
+    float: left;
+    font-size: 32px;
+    font-weight: 400;
+  }
+  .box{
+    border: 1px solid #eaeefb;
+    border-radius: 4px;
+    transition: .2s;
+  }
+  .breadcrumb{
+    padding:12px;
+    margin-bottom: 5px;
+    border-radius: 0px;
+  }
+
+  .sideMenus{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+    left: 0;
+    border-right: solid 1px #e9eced;
+    height: calc(100vh - 55px);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    background-color: #324157;
+    width: 180px;
+  }
+
+  .container {
+    position: relative;
+    /*padding: 5px 0 0 5px;;*/
+    margin: 0;
+    font-size: 11px;
+    left: 0px;
+    height: calc(100vh - 55px);
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 180px);
+  }
+
+  .menus .el-menu-item {
+    height: 30px;
+    line-height: 35px;
+  }
+
+  .el-menu--horizontal .el-menu-item {
+    height: 60px;
+  }
+
+  .el-menu-item a {
+    text-decoration: none;
+    color: #bfcbd9;
+  }
+
+  .el-menu-item.is-active a {
+    color: #20a0ff;
+  }
+  .el-menu-item.right {
+    float: right;
+
+  }
+  .el-menu-item.right .el-dropdown {
+    color: #ffffff;
+  }
+
+  .el-menu {
+    border-radius: 0px;
+  }
+</style>

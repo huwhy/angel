@@ -1,0 +1,45 @@
+server:
+  port: 8888
+  connection-timeout:
+  session:
+    timeout: 3600
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/json
+    min-response-size: 2048
+  tomcat:
+    max-threads: 1000
+    uri-encoding: UTF-8
+    remote-ip-header: x-forwarded-for
+    accesslog:
+      directory: ${log.path}
+      pattern: common
+      enabled: true
+      prefix: access_log
+      suffix: .log
+
+
+
+#数据库连接池
+db:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: root
+  password: abc123
+  defaultAutoCommit: false
+  maxActive: 100
+  initialSize: 1
+  maxWait: 60000
+  minIdle: 1
+  maxIdle: 25
+
+
+user:
+  rolePrefix: ROLE_
+common:
+  baseUrl: http://localhost:8888
+
+beetl:
+  root: /data/admin/templates
+
+

@@ -1,0 +1,42 @@
+package cn.huwhy.angel.web;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+
+import cn.huwhy.angel.biz.UserBiz;
+import cn.huwhy.angel.common.Json;
+import cn.huwhy.angel.common.Paging;
+import cn.huwhy.angel.po.User;
+import cn.huwhy.angel.term.UserTerm;
+
+@Controller
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserBiz userBiz;
+
+    @RequestMapping("list.html")
+    public String list(ModelMap modelMap) {
+        Paging<User> paging = userBiz.findUsers(new UserTerm());
+        modelMap.addAttribute("paging", paging);
+        modelMap.addAttribute("data", JSON.toJSONString(paging.getData()));
+        return "user/list";
+    }
+
+    @RequestMapping("next")
+    @ResponseBody
+    public Json next(String username, Long pageNo) {
+        UserTerm term = new UserTerm();
+        term.setUsername(username);
+        term.setPageNum(pageNo);
+        Paging<User> paging = userBiz.findUsers(new UserTerm());
+        return Json.SUCCESS().setData(paging);
+    }
+
+}

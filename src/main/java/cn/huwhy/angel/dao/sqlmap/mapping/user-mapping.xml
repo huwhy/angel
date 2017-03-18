@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.UserDao">
+  <sql id="COLUMNS">
+    `id`, `username`, `password`, `real_name`, `locked`, `updated`, `created`
+  </sql>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="User">
+    INSERT INTO users (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{username}, #{password}, #{real_name}, #{locked}, now(), now()
+    ) on duplicate key update
+    password=VALUES(password), locked=#{locked}, updated=VALUES(updated)
+  </insert>
+
+  <select id="findByName" resultType="User" parameterType="java.lang.String">
+    SELECT
+    <include refid="COLUMNS"/>
+    FROM users
+    WHERE `username` = #{username} AND `deleted` = FALSE
+    limit 1
+  </select>
+
+  <select id="findPaging" resultType="User" parameterType="cn.huwhy.angel.term.UserTerm">
+    SELECT
+    <include refid="COLUMNS"/>
+    FROM users
+    <where>
+      <if test="username != null and username != ''">
+        and username like #{username}
+      </if>
+    </where>
+  </select>
+</mapper>
