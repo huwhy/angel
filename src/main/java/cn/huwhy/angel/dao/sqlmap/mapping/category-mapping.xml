@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.CategoryDao">
+  <sql id="COLUMNS">
+    `id`, `pid`, `name`, `parent`, `level`, `updated`, `created`
+  </sql>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="Category">
+    INSERT INTO article_catalog (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{pid}, #{name}, #{parent}, #{level}, now(), now()
+    ) on duplicate key update
+    name=VALUES(name), updated=VALUES(updated)
+  </insert>
+
+
+  <select id="findPaging" resultType="User" parameterType="cn.huwhy.angel.term.UserTerm">
+    SELECT
+    <include refid="COLUMNS"/>
+    FROM users
+    <where>
+      <if test="username != null and username != ''">
+        and username like #{username}
+      </if>
+    </where>
+  </select>
+</mapper>
