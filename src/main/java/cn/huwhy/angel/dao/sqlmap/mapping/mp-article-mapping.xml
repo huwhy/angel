@@ -15,8 +15,11 @@
     `title`=VALUES(`title`), updated=VALUES(updated)
   </insert>
 
+  <select id="get" resultType="MpArticle">
+    select * from mp_article where id=#{id}
+  </select>
 
-  <select id="findPaging" resultType="Article" parameterType="cn.huwhy.angel.common.Term">
+  <select id="findPaging" resultType="MpArticle" parameterType="cn.huwhy.angel.common.Term">
     select * from mp_article
     <where>
       <if test="mpId != null">

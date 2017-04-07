@@ -6,6 +6,7 @@ import org.markdown4j.Markdown4jProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,13 @@ public class MpArticleController {
         modelMap.addAttribute("statuses", ArticleStatus.values());
         modelMap.addAttribute("data", JSON.toJSONString(paging.getData()));
         return "mp_article/list";
+    }
+
+    @RequestMapping("{id:\\d+}.html")
+    public String detail(ModelMap modelMap, @PathVariable("id") Integer id) {
+        MpArticle article = articleBiz.get(id);
+        modelMap.addAttribute("article", article);
+        return "mp_article/detail";
     }
 
     @RequestMapping("add.html")
