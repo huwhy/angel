@@ -20,7 +20,6 @@ server:
 
 
 
-#数据库连接池
 db:
   driverClassName: com.mysql.jdbc.Driver
   url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false

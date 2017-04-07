@@ -18,6 +18,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import cn.huwhy.angel.config.DbConfig;
+import cn.huwhy.angel.po.Article;
+import cn.huwhy.angel.po.Category;
+import cn.huwhy.angel.po.MpArticle;
+import cn.huwhy.angel.po.MpConfig;
+import cn.huwhy.angel.po.User;
 
 /**
  * @author huwhy
@@ -56,10 +61,10 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource());
         bean.setTypeAliasesPackage("cn.huwhy.angel.po");
-//        bean.setTypeAliases(new Class[]{
-//                User.class, Category.class, Article.class,
-//
-//        });
+        bean.setTypeAliases(new Class[]{
+                User.class, Category.class, Article.class,
+                MpArticle.class, MpConfig.class
+        });
         bean.setConfigLocation(new ClassPathResource("cn/huwhy/angel/dao/sqlmap/sqlmap.xml"));
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         bean.setMapperLocations(resolver.getResources("classpath:cn/huwhy/angel/dao/sqlmap/mapping/*-mapping.xml"));
