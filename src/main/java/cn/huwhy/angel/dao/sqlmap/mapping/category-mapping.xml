@@ -11,17 +11,23 @@
     ) values (
     #{id}, #{pid}, #{name}, #{parent}, #{level}, now(), now()
     ) on duplicate key update
-    name=VALUES(name), updated=VALUES(updated)
+    `name`=VALUES(`name`), updated=VALUES(updated)
   </insert>
 
 
-  <select id="findPaging" resultType="User" parameterType="cn.huwhy.angel.term.UserTerm">
+  <select id="findPaging" resultType="Category" parameterType="cn.huwhy.angel.common.Term">
     SELECT
     <include refid="COLUMNS"/>
-    FROM users
+    FROM article_catalog
     <where>
-      <if test="username != null and username != ''">
-        and username like #{username}
+      <if test="name != null and name != ''">
+        and `name` like #{name}
+      </if>
+      <if test="pid != null and pid > 0">
+        and pid = #{pid}
+      </if>
+      <if test="level != null and level > 0">
+        and `level` =#{level}
       </if>
     </where>
   </select>

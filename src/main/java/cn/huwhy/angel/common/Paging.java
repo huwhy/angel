@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Paging<T> implements Serializable {
-    public static Paging empty = new Paging<>(0L, 15L, 1L);
+    public static Paging empty = new Paging<>(0, 15, 1);
     /**
      * 总条数
      */
-    private Long totalNum;
+    private Integer totalNum;
     /**
      * 每页条数 默认10
      */
-    private Long pageSize = 10L;
+    private Integer pageSize = 10;
     /**
      * 当前页
      */
-    private Long pageNum;
+    private Integer pageNum;
 
     /**
      * 数据
@@ -34,44 +34,44 @@ public class Paging<T> implements Serializable {
         this.data = data;
     }
 
-    public Paging(Long totalNum, Long pageSize, Long pageNum) {
+    public Paging(Integer totalNum, Integer pageSize, Integer pageNum) {
         this.totalNum = totalNum;
         this.pageSize = pageSize;
         this.pageNum = pageNum;
     }
 
     public static Paging empty(Term term) {
-        Paging paging = new Paging(0L, term.getPageSize(), term.getPageNum());
+        Paging paging = new Paging(0, term.getPageSize(), term.getPageNum());
         paging.setData(new ArrayList<>(0));
         return paging;
     }
 
-    public Long getTotalNum() {
+    public Integer getTotalNum() {
         return totalNum;
     }
 
-    public void setTotalNum(Long totalNum) {
+    public void setTotalNum(Integer totalNum) {
         this.totalNum = totalNum;
     }
 
-    public Long getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public Long getPageNum() {
+    public Integer getPageNum() {
         return pageNum;
     }
 
-    public void setPageNum(Long pageNum) {
+    public void setPageNum(Integer pageNum) {
         this.pageNum = pageNum;
     }
 
-    public Long getTotalPage() {
-        Long totalPage = this.totalNum / this.pageSize;
+    public Integer getTotalPage() {
+        Integer totalPage = this.totalNum / this.pageSize;
         if (this.totalNum % this.pageSize > 0) {
             totalPage += 1;
         }

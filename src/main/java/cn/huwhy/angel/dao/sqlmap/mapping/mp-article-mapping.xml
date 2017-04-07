@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.MpArticleDao">
+  <sql id="COLUMNS">
+    id, mp_id, title, content, status, comments, views, url, updated, created
+  </sql>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="MpArticle">
+    INSERT INTO mp_article (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{mpId}, #{title}, #{content}, #{status.value}, #{comments}, #{views},
+    #{url}, now(), now()
+    ) on duplicate key update
+    `title`=VALUES(`title`), updated=VALUES(updated)
+  </insert>
+
+
+  <select id="findPaging" resultType="Article" parameterType="cn.huwhy.angel.common.Term">
+    select * from mp_article
+    <where>
+      <if test="mpId != null">
+        and mp_id=#{mpId}
+      </if>
+      <if test="title != null and title != ''">
+        and title like #{title}
+      </if>
+      <if test="status != null">
+        and status =#{status.value}
+      </if>
+    </where>
+  </select>
+
+  <update id="setStatus">
+    update mp_article set status = #{status.value} where id=#{id}
+  </update>
+</mapper>

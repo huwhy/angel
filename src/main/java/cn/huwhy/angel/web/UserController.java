@@ -31,10 +31,10 @@ public class UserController {
 
     @RequestMapping("next")
     @ResponseBody
-    public Json next(String username, Long pageNo) {
+    public Json next(String username, Integer pageNum) {
         UserTerm term = new UserTerm();
         term.setUsername(username);
-        term.setPageNum(pageNo);
+        term.setPageNum(pageNum);
         Paging<User> paging = userBiz.findUsers(new UserTerm());
         return Json.SUCCESS().setData(paging);
     }

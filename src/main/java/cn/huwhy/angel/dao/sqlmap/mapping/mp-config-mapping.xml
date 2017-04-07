@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.MpConfigDao">
+  <sql id="COLUMNS">
+    id, `app_id`, `name`, `secret`, `token`, `aes_key`, `access_token`, `expires_time`,
+     `js_api_ticket`, `js_expires_time`, `partner_id`, `partner_key`, `cert_path`,
+      `cert_pass`, `salt`
+  </sql>
+
+  <insert id="save" useGeneratedKeys="true" keyColumn="id" parameterType="MpConfig">
+    INSERT INTO mp_config (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{appId}, #{name}, #{secret}, #{token}, #{aesKey}, #{accessToken}, #{expiresTime},
+    #{jsApiTicket}, #{jsExpiresTime}, #{partnerId}, #{partnerKey}, #{certPath}, #{certPass}, #{salt}
+    ) on duplicate key update secret=VALUES(secret), token=VALUES(token),
+    aes_key=VALUES(aes_key), access_token=VALUES(access_token), expires_time=VALUES(expires_time),
+    js_api_ticket=VALUES(js_api_ticket), partner_id=VALUES(partner_id),
+    partner_key=VALUES(partner_key), cert_path=VALUES(cert_path), cert_pass=VALUES(cert_pass)
+  </insert>
+
+  <select id="get" resultType="MpConfig">
+    SELECT
+    <include refid="COLUMNS"/>
+    FROM mp_config
+    WHERE id = #{id}
+  </select>
+
+  <select id="findPaging" resultType="MpConfig">
+    SELECT
+    <include refid="COLUMNS"/>
+    FROM mp_config
+    <where>
+      <if test="appId != null and appId != ''">
+        and app_id=#{appId}
+      </if>
+      <if test="name != null and name != ''">
+        and `name` like #{name}
+      </if>
+    </where>
+  </select>
+</mapper>

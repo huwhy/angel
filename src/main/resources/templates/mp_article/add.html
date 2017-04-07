@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <title>添加文章</title>
+  <%include("/common/style.html"){}%>
+  <style>
+    .el-form{ padding-top:5px;}
+    .phone {
+      width: 500px;
+      height: calc(100vh - 200px);
+      background-color: #f9fafc;
+      border: 1px solid #eaeefb;
+      word-break: break-all;
+      word-wrap: break-word
+    }
+    .phone *{
+      width: 500px;
+      word-break: break-all;
+      word-wrap: break-word
+    }
+    .edit textarea {
+      width: 500px;
+      height: calc(100vh - 200px);
+    }
+  </style>
+</head>
+<body>
+<%layout("/common/layout.html"){%>
+<el-form ref="form" :model="form" label-width="80px">
+  <el-row :gutter="20">
+    <el-col :span="12">
+      <el-form-item label="标题">
+        <el-input size="small" v-model="form.title"></el-input>
+      </el-form-item>
+      <el-form-item label="活动形式">
+        <el-input type="textarea" v-model="form.desc" class="edit"></el-input>
+      </el-form-item>
+    </el-col>
+    <el-col :span="10">
+      <div class="grid-content bg-purple phone" id="hello">
+
+      </div>
+    </el-col>
+  </el-row>
+  <el-form-item>
+    <el-button type="primary" @click="onView">预览</el-button>
+    <el-button type="primary" @click="onSave">立即创建</el-button>
+    <el-button>取消</el-button>
+  </el-form-item>
+</el-form>
+<%}%>
+<script src="${ctxPath}/assets/js/showdown.1.6.4.js"></script>
+<script>
+  var Main = {
+    data() {
+      return {
+        form: {
+          title: '',
+          desc: ''
+        },
+        menu: {
+          topIndex: '2'
+        }
+      }
+    },
+    methods: {
+      onView() {
+        var html = converter.makeHtml(App.form.desc);
+        $("#hello").html(html);
+      },
+      onSave() {
+        Common.postForm({
+          url: '/mp-article/save',
+          params: {title: App.form.title, content: App.form.desc}
+        });
+      }
+    }
+  };
+  var converter = new showdown.Converter();
+  var Ctor = Vue.extend(Main);
+  var App = new Ctor().$mount('#app');
+</script>
+</body>
+</html>
+
+

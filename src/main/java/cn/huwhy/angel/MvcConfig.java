@@ -23,6 +23,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
+import cn.huwhy.angel.beetl.Angel;
+
 /**
  * @author huwhy
  * @date 2016/12/14
@@ -60,9 +62,10 @@ public class MvcConfig extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/assets/");
     }
 
-    @Bean(name = "beetlConfig", initMethod = "init")
+    @Bean(name = "beetlConfig")
     public BeetlGroupUtilConfiguration beetlGroupUtilConfiguration(
-            @Value("${beetl.root}") String templatePath
+            @Value("${beetl.root}") String templatePath,
+            Angel angelFunctions
     ) {
         BeetlGroupUtilConfiguration beetlGroupUtilConfiguration = new BeetlGroupUtilConfiguration();
         try {
@@ -72,6 +75,8 @@ public class MvcConfig extends WebMvcConfigurationSupport {
             }
             FileResourceLoader loader = new FileResourceLoader(templatePath, "utf-8");
             beetlGroupUtilConfiguration.setResourceLoader(loader);
+            beetlGroupUtilConfiguration.init();
+            beetlGroupUtilConfiguration.getGroupTemplate().registerFunctionPackage("angel", angelFunctions);
             return beetlGroupUtilConfiguration;
         } catch (Exception e) {
             throw new RuntimeException(e);

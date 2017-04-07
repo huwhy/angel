@@ -1,24 +1,11 @@
 package cn.huwhy.angel.po;
 
-import java.util.Date;
+public class User extends BaseModel<Integer> {
 
-public class User {
-
-    private int     id;
     private String  username;
     private String  password;
     private String  realName;
     private boolean locked;
-    private Date    updated;
-    private Date    created;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -52,19 +39,4 @@ public class User {
         this.locked = locked;
     }
 
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
 }

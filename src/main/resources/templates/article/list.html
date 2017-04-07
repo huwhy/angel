@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <%include("/common/style.html"){}%>
+  <style>
+    .el-form{ padding-top:5px;}
+  </style>
+</head>
+<body>
+<%layout("/common/layout.html"){%>
+<el-form ref="form" :model="form" label-width="80px">
+  <el-row>
+    <el-col :span="6">
+      <el-form-item label="标题">
+        <el-input size="small" v-model="form.params.title"></el-input>
+      </el-form-item>
+    </el-col>
+    <el-col :span="6">
+      <el-form-item label="状态">
+        <el-select v-model="form.params.status" placeholder="选择状态">
+          <%for(status in statuses!){%>
+          <%if(statusLP.index > 1){%>
+          <el-option label="${status.cnName}" value="${status.value}"></el-option>
+          <%}%>
+          <%}%>
+        </el-select>
+      </el-form-item>
+    </el-col>
+  </el-row>
+  <el-form-item>
+    <el-button type="primary" @click="onSubmit">查询</el-button>
+    <el-button>取消</el-button>
+  </el-form-item>
+</el-form>
+<template>
+  <el-table
+      :data="items"
+      border
+      style="width: 100%"
+      max-height="600">
+    <el-table-column fixed prop="id" label="编号" width="150"></el-table-column>
+    <el-table-column prop="firstName" label="一级类目" width="120"></el-table-column>
+    <el-table-column prop="secondName" label="二级类目" width="120"></el-table-column>
+    <el-table-column prop="thirdName" label="三级类目" width="120"></el-table-column>
+    <el-table-column prop="title" label="标题" width="280"></el-table-column>
+    <el-table-column prop="status2" label="状态" width="120"></el-table-column>
+    <el-table-column fixed="right" label="操作" width="120">
+      <template scope="scope">
+        <el-button @click="display(scope.row)" type="text" size="small">显示</el-button>
+        <el-button @click="hide(scope.row)" type="text" size="small">隐藏</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
+</template>
+<el-pagination small @current-change="handleCurrentChange"
+               :current-page="currentPage"
+               layout="prev, pager, next" :total="total" :page-size="pageSize">
+</el-pagination>
+<%}%>
+<script>
+  var Main = {
+    data() {
+      return {
+        form: {
+          url: '/article/next',
+          params: {
+            title: '',
+            firstCid: 0,
+            secondCid: 0,
+            thirdCid: 0,
+            status: '',
+            pageNum: 1
+          },
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        menu: {
+          topIndex: '2'
+        },
+        items: ${data},
+        currentPage: ${paging.pageNum!1},
+        total: ${paging.totalNum!0},
+        pageSize: ${paging.pageSize!10},
+      }
+    },
+    methods: {
+      onSubmit() {
+        queryItem(1);
+      },
+      display(row) {
+        Common.postForm(
+            {
+              url: '/article/display',
+              params:{id: row.id},
+              ok: function(json) {
+                row.status2 = '已发布';
+              }
+            }
+        );
+      },
+      hide(row) {
+        Common.postForm(
+            {
+              url: '/article/hide',
+              params:{id: row.id},
+              ok: function(json) {
+                row.status2 = '未发布';
+              }
+            }
+        );
+      },
+      handleCurrentChange(val) {
+        this.currentPage = val;
+        queryItem(val);
+      },
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  };
+  var Ctor = Vue.extend(Main)
+  var App = new Ctor().$mount('#app')
+  function queryItem(page) {
+    App.form.params.pageNum = page;
+    Common.get({
+      url: App.form.url,
+      params: App.form.params,
+      ok: function (json) {
+        App.items.splice(0, App.items.length);
+        $.each(json.data.data, function(i, item){
+          App.items.push(item);
+        });
+        App.total = json.data.totalNum;
+        App.pageSize = json.data.pageSize;
+        App.currentPage = json.data.pageNum;
+      }
+    });
+  }
+</script>
+</body>
+</html>
+
+

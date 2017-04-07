@@ -1,7 +1,7 @@
 
 <div id="app">
   <div id="header">
-    <el-menu theme="dark" :default-active="menu.leftIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu theme="dark" :default-active="menu.leftIndex" class="el-menu-demo" mode="horizontal">
       <el-menu-item index="0">
         <h1>超级管理员</h1>
       </el-menu-item>
@@ -25,17 +25,32 @@
   </div>
   <el-row :gutter="2">
     <el-col :span="4" class="sideMenus">
-      <el-menu theme="dark" mode="vertical" default-active="2" class="menus el-menu-vertical-demo" @select="handleSelect" >
+      <el-menu theme="dark" mode="vertical" default-active="${parameter.mid!1}" class="menus el-menu-vertical-demo">
         <el-menu-item-group title="分组一">
           <el-menu-item index="1">
             <i class="el-icon-message"></i>
-            <a href="/user/list.html">用户管理</a>
+            <a href="/user/list.html?mid=1">用户管理</a>
           </el-menu-item>
-          <el-menu-item index="2"><i class="el-icon-message"></i>导航二</el-menu-item>
+          <el-menu-item index="2">
+            <i class="el-icon-message"></i>
+            <a href="/category/list.html?mid=2">目录管理</a>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <i class="el-icon-message"></i>
+            <a href="/article/list.html?mid=3">文章管理</a>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-message"></i>
+            <a href="/mp-article/list.html?mid=4">公众号文章管理</a>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <i class="el-icon-message"></i>
+            <a href="/mp/list.html?mid=4">公众号配置</a>
+          </el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="分组二">
-          <el-menu-item index="3"><i class="el-icon-message"></i>导航三</el-menu-item>
-          <el-menu-item index="4"><i class="el-icon-message"></i>导航四</el-menu-item>
+          <el-menu-item index="5"><i class="el-icon-message"></i>导航三</el-menu-item>
+          <el-menu-item index="6"><i class="el-icon-message"></i>导航四</el-menu-item>
         </el-menu-item-group>
       </el-menu>
     </el-col>
@@ -45,9 +60,9 @@
   </el-row>
 </div>
 <!-- 先引入 Vue -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="/assets/js/vue.2.2.4.js"></script>
 <!-- 引入组件库 -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="/assets/js/element-ui-1.2.5.js"></script>
 <script src="${ctxPath}/assets/js/jquery.min.js"></script>
 <script src="${ctxPath}/assets/js/common.js"></script>
 

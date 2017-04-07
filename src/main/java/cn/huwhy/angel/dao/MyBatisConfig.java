@@ -2,7 +2,6 @@ package cn.huwhy.angel.dao;
 
 import java.util.Collections;
 
-import cn.huwhy.angel.po.Category;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -19,7 +18,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import cn.huwhy.angel.config.DbConfig;
-import cn.huwhy.angel.po.User;
 
 /**
  * @author huwhy
@@ -57,9 +55,11 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource());
-        bean.setTypeAliases(new Class[]{
-                User.class, Category.class
-        });
+        bean.setTypeAliasesPackage("cn.huwhy.angel.po");
+//        bean.setTypeAliases(new Class[]{
+//                User.class, Category.class, Article.class,
+//
+//        });
         bean.setConfigLocation(new ClassPathResource("cn/huwhy/angel/dao/sqlmap/sqlmap.xml"));
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         bean.setMapperLocations(resolver.getResources("classpath:cn/huwhy/angel/dao/sqlmap/mapping/*-mapping.xml"));

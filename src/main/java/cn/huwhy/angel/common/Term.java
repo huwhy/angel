@@ -8,15 +8,20 @@ public abstract class Term implements Serializable {
     /**
      * 分页数
      */
-    private Long    pageSize = 15L;
+    private Integer pageSize = 15;
     /**
      * 查询页
      */
-    private Long    pageNum  = 1L;
+    private Integer pageNum  = 1;
     /**
      * 总记录数
      */
-    private Long    totalNum = 0L;
+    private Integer totalNum = 0;
+    /**
+     * 是否快速查询分布
+     * totalNum 返回剩余的数据总量
+     */
+    private Boolean hasStart = false;
     /**
      * 返回总记录数
      */
@@ -24,7 +29,7 @@ public abstract class Term implements Serializable {
     /**
      * 排序
      */
-    private Map<String, Sort> sorts;
+    private Map<String, Sort>   sorts;
     /**
      * 扩展参数
      */
@@ -34,27 +39,27 @@ public abstract class Term implements Serializable {
         return args;
     }
 
-    public Long getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public Long getPageNum() {
+    public Integer getPageNum() {
         return pageNum;
     }
 
-    public void setPageNum(Long pageNum) {
+    public void setPageNum(Integer pageNum) {
         this.pageNum = pageNum;
     }
 
-    public Long getTotalNum() {
+    public Integer getTotalNum() {
         return totalNum;
     }
 
-    public void setTotalNum(Long totalNum) {
+    public void setTotalNum(Integer totalNum) {
         this.totalNum = totalNum;
     }
 
@@ -66,7 +71,15 @@ public abstract class Term implements Serializable {
         this.hasTotal = hasTotal;
     }
 
-    public Long getStart() {
+    public Boolean getHasStart() {
+        return hasStart;
+    }
+
+    public void setHasStart(Boolean hasStart) {
+        this.hasStart = hasStart;
+    }
+
+    public Integer getStart() {
         return (this.pageNum - 1) * this.pageSize;
     }
 

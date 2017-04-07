@@ -22,11 +22,11 @@ import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
 
 import cn.huwhy.angel.common.Term;
 
-@Intercepts({@Signature(type=StatementHandler.class,method="prepare",args={Connection.class})})
+@Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class})})
 public class PagingInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        StatementHandler statementHandler = (StatementHandler)invocation.getTarget();
+        StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
         Object delegate = ReflectUtil.getFieldValue(statementHandler, "delegate");
         MappedStatement mappedStatement = (MappedStatement) ReflectUtil.getFieldValue(delegate, "mappedStatement");
         if (mappedStatement.getId().endsWith("Paging")) {
@@ -85,7 +85,7 @@ public class PagingInterceptor implements Interceptor {
             //之后就是执行获取总记录数的Sql语句和获取结果了。
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                term.setTotalNum(rs.getLong(1));
+                term.setTotalNum((int) rs.getLong(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,7 +126,7 @@ public class PagingInterceptor implements Interceptor {
      * @return
      */
     public static String getCountSQL(String sql) {
-         return "select count(1) from (" + sql + ") temp";
+        return "select count(1) from (" + sql + ") temp";
     }
 
 }

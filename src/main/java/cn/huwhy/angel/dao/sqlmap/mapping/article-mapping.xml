@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.ArticleDao">
+  <sql id="COLUMNS">
+    `id`, `first_cid`, `second_cid`, `third_cid`, `title`, `tags`, `summary`,
+    `content`, `status`, `img_url`, `author`, `comments`, `views`, `url`, `updated`, `created`
+  </sql>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="Article">
+    INSERT INTO article (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{firstCid}, #{secondCid}, #{thirdCid}, #{title}, #{tags}, #{summary},
+    #{content}, #{status.value}, #{imgUrl}, #{author}, #{comments}, #{views},
+    #{url}, now(), now()
+    ) on duplicate key update
+    `title`=VALUES(`title`), updated=VALUES(updated)
+  </insert>
+
+
+  <select id="findPaging" resultType="Article" parameterType="cn.huwhy.angel.common.Term">
+    SELECT a.*, f.name first_name, s.name second_name, t.name third_name FROM article a
+    left join article_catalog f on a.first_cid=f.id
+    left join article_catalog s on a.second_cid=s.id
+    left join article_catalog t on a.third_cid=t.id
+    <where>
+      <if test="firstCid != null and firstCid > 0">
+        and a.`first_cid` = #{firstCid}
+      </if>
+      <if test="secondCid != null and secondCid > 0">
+        and a.second_cid = #{secondCid}
+      </if>
+      <if test="thirdCid != null and thirdCid > 0">
+        and a.`third_cid` = #{thirdCid}
+      </if>
+      <if test="status != null">
+        and a.status = #{status.value}
+      </if>
+      <if test="title != null and title != ''">
+        and a.title like #{title}
+      </if>
+    </where>
+  </select>
+
+  <update id="setStatus">
+    update article set status = #{status.value} where id=#{id}
+  </update>
+</mapper>

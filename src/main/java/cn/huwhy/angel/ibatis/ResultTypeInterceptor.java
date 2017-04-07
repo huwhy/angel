@@ -99,7 +99,7 @@ public class ResultTypeInterceptor implements Interceptor {
                                         ev = v1;
                                     }
                                 }
-                                if (ev == null) {
+                                if (value != null && ev == null) {
                                     throw new RuntimeException(pd.getPropertyType().getName() + " enum value 不存在:" + value);
                                 }
                                 value = ev;
