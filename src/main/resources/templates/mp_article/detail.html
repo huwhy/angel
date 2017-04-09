@@ -11,16 +11,13 @@
   <meta content="email=no" name="format-detection">
   <script src="/assets/js/flexible.js"></script>
   <style>
-    .box{
-      width: 8.68rem;
-      padding: 0.266rem 0.66rem 0.266rem 0.66rem;
-      position: relative;
-      overflow: hidden;
+    body{
+      width: 10rem;
     }
-    .title {
-      font-size: 0.4rem;
-      color: #2A2A2A;
-      line-height: 1.5;
+    .flex {
+      display: flex;
+      display: -ms-flexbox;
+      display: -webkit-flex;
     }
     .top-line::before {
       content: '';
@@ -44,27 +41,51 @@
       -webkit-transform: scaleY(0.5);
       transform: scaleY(0.5);
     }
+    .box{
+      width: 10rem;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .box.item {
+      width: 9.2rem;
+      margin: 0 0.4rem 0;
+    }
 
-    .box * {
-      max-width: 8.68rem;
+    .title {
+      padding: 0.4rem 0 0.2rem;
+      font-size: 0.4rem;
+      color: #2A2A2A;
+      line-height: 1.5;
+      font-weight: bold;
     }
     .mp_info {
+      width: 9.2rem;
+      padding: 0.2rem 0.4rem;
       font-size: 0.293rem;
       line-height: 1.5;
       color: #979797;
       display: inline-block;
       vertical-align: middle;
     }
+    .content{
+      padding-top: 0.2rem;
+    }
+
+    .box * {
+      max-width: 8.68rem;
+    }
+
   </style>
 </head>
 <body>
-  <div class="box title">
+  <div class="box item title">
     ${article.title!}
   </div>
   <div class="box top-line bottom-line mp_info">
-    搜索公众号 <a href="weixin://contacts/profile/gh_29b368a5b449">道君说</a> 获取更多的内容
+    搜索关注公众号 <a href="weixin://contacts/profile/gh_29b368a5b449">道君说</a> 获取更多的内容
   </div>
-  <div class="box content">
+  <div class="box item content">
     ${angel.markdown(article.content!)}
   </div>
   <script src="/assets/js/zepto.min.js"></script>
