@@ -10,7 +10,7 @@ import cn.huwhy.wx.sdk.message.Message;
 public class HandlerConfig {
 
     @Bean
-    public EventHandler eventHandler(TextListener textListener) {
+    public EventHandler eventHandler(TextMsgListener textListener) {
         EventHandler handler = new EventHandler();
         handler.register(Message.EVENT_KEYS.TEXT_MSG, textListener);
         return handler;
