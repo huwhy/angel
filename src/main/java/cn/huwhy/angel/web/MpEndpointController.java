@@ -52,6 +52,7 @@ public class MpEndpointController extends BaseController {
                 printResponse(response, echostr);
                 return;
             }
+            logger.debug("endpoint-params: {}, {}, {}, {}", signature, nonce, timestamp, echostr);
             if (!wxBizMsgCryptBiz.check(config, signature, timestamp, nonce)) {
                 logger.debug("endpoint: {} - ckeckError", id);
                 printResponse(response, ERROR_MSG);
