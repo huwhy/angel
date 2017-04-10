@@ -20,8 +20,10 @@ public abstract class AccessTokenApi {
     }
 
     public static void main(String[] args) {
-        AccessToken token = getAppAccessToken("wx9b9c25b74beeb7fc", "7f3aec7599ee0c832528ec956ea185d3");
+        AccessToken token = getAppAccessToken("wx8f7c6b54aac99143", "0aab85a2ae857d52c28141db2d4139b0");
         System.out.println(token);
+        String atoken = "Hq6X3WRswBTKwDAafgVB2_QJPqA1FYND0ZqTopaUodUg_5tjht2FIfi8Ezr37GYYayX6bZUpFnVfO03MvWeHuimM_EiyPFT_tY-eCvaWw1AMHMf-2sSaU3AbXMf0ONlNKEReAIASMZ";
+        System.out.println("Hq6X3WRswBTKwDAafgVB2_QJPqA1FYND0ZqTopaUodUg_5tjht2FIfi8Ezr37GYYayX6bZUpFnVfO03MvWeHuimM_EiyPFT_tY-eCvaWw1AMHMf-2sSaU3AbXMf0ONlNKEReAIASMZ");
     }
 
 }

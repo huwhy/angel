@@ -1,8 +1,10 @@
 package cn.huwhy.angel.web;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +19,8 @@ import cn.huwhy.angel.biz.WxBizMsgCryptBiz;
 import cn.huwhy.angel.biz.manager.MpConfigManager;
 import cn.huwhy.angel.po.MpConfig;
 import cn.huwhy.wx.sdk.aes.AesException;
+import cn.huwhy.wx.sdk.listener.EventHandler;
+import cn.huwhy.wx.sdk.model.Command;
 
 @Controller
 @RequestMapping("mp")
@@ -28,12 +32,14 @@ public class MpEndpointController extends BaseController {
     private MpConfigManager  mpConfigManager;
     @Autowired
     private WxBizMsgCryptBiz wxBizMsgCryptBiz;
+    @Autowired
+    private EventHandler     eventHandler;
 
     @RequestMapping(value = "/endpoint/{salt:\\d{5}}{id}")
     public void endPoint(HttpServletRequest request,
                          HttpServletResponse response,
                          @PathVariable Integer salt,
-                         @PathVariable("id") Integer id) throws AesException, NoSuchAlgorithmException {
+                         @PathVariable("id") Integer id) throws AesException, NoSuchAlgorithmException, IOException {
         logger.debug("endpoint: {}", id);
         MpConfig config = mpConfigManager.get(id);
         if (config != null && config.getSalt().equals(salt)) {
@@ -46,12 +52,21 @@ public class MpEndpointController extends BaseController {
                 printResponse(response, echostr);
                 return;
             }
-            if (!wxBizMsgCryptBiz.check(config, timestamp, nonce, signature)) {
+            if (!wxBizMsgCryptBiz.check(config, signature, timestamp, nonce)) {
                 logger.debug("endpoint: {} - ckeckError", id);
                 printResponse(response, ERROR_MSG);
                 return;
             }
-            printResponse(response, SUCCESS_MSG);
+            // 处理接收消息
+            ServletInputStream in = request.getInputStream();
+            StringBuilder xmlMsg = new StringBuilder();
+            byte[] b = new byte[4096];
+            for (int n; (n = in.read(b)) != -1; ) {
+                xmlMsg.append(new String(b, 0, n, "iso8859-1"));
+            }
+            Command command = wxBizMsgCryptBiz.transform(config, signature, timestamp, nonce, xmlMsg.toString());
+            String replyMsg = eventHandler.handler(command);
+            printResponse(response, Strings.isNullOrEmpty(replyMsg) ? SUCCESS_MSG : replyMsg);
         } else {
             logger.debug("endpoint: {} - failure", id);
             printResponse(response, ERROR_MSG);
