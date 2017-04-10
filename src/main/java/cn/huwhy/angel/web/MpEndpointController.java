@@ -65,6 +65,7 @@ public class MpEndpointController extends BaseController {
             for (int n; (n = in.read(b)) != -1; ) {
                 xmlMsg.append(new String(b, 0, n, "iso8859-1"));
             }
+            logger.debug("receive-xml: {}", xmlMsg);
             Command command = wxBizMsgCryptBiz.transform(config, signature, timestamp, nonce, xmlMsg.toString());
             String replyMsg = eventHandler.handler(command);
             printResponse(response, Strings.isNullOrEmpty(replyMsg) ? SUCCESS_MSG : replyMsg);
