@@ -84,7 +84,8 @@ public class MpEndpointController extends BaseController {
                 "    <ToUserName><![CDATA[gh_29b368a5b449]]></ToUserName>\n" +
                 "    <Encrypt><![CDATA[DZQURPqnY3ksM7kp0qevG2QdA+1DNv0pdjIt2IbXDHgCg2A9roP5nQ+eMcnogsRhNpV3ZnhR310ShMw8S+mreBY+tN3SHTbJu0yUnGLY17AaM+F1tGa4rucuD+5dSAAET5zAEIHJyKg03khsOAZtD6qXwFwWRE5cMKTopnGP09ev41HzcQ4+Vw\n" +
                 "qpL95od2hVeQbMWkIn6JF6GGVECg4CH7jT18CxwwyTOAlj3nFYqAfxQ7MPBF9AvfJDgxI/vuLIKyBva8u0zQb3J4q7KpIggg08QKI3TrtP2fZTG8eZiPaiZ1d2rApFxfVrcyTNHlZvfcI5PfNCOo4rt+nsnl29I+jYKnGVYCOXGsaXq6rEcxnHEwvj3VRpKudfFM9n7bvIdj\n" +
-                "Q/7C70KLHXcMSqGyh+CcRppjLU5cItp+qdVsOYKo8=]]></Encrypt>";
+                "Q/7C70KLHXcMSqGyh+CcRppjLU5cItp+qdVsOYKo8=]]></Encrypt>\n" +
+                "</xml>";
         WXBizMsgCrypt crypt = new WXBizMsgCrypt("daojunshuo87", "N0Agg6ZPOPRVIT8dwidiHFPP5kkQ0orT2tJQc5siU5a", "wx9b9c25b74beeb7fc");
         System.out.println(crypt.decryptMsg(sign, timestamp, nonce, receiveXml));
     }
