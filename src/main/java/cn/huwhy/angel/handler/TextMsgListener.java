@@ -13,6 +13,8 @@ public class TextMsgListener extends Listener {
     @Override
     public String handle(Command command) {
         Message message = new TextMessage();
+        message.setToUserName(command.getFromUserName());
+        message.setFromUserName(command.getToUserName());
         message.setContent("http://angel.huwhy.cn/mp-article/5.html");
         return ReplyMsgBuilder.toXml(message);
     }
