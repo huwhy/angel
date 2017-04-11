@@ -132,6 +132,7 @@ public class WxBizMsgCryptBiz {
             return command;
 
         } catch (IOException | ParserConfigurationException | AesException | SAXException | NoSuchAlgorithmException e) {
+            logger.error("", e);
             throw new RuntimeException(e);
         }
     }
