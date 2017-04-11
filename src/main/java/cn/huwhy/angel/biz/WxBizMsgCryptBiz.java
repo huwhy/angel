@@ -137,6 +137,16 @@ public class WxBizMsgCryptBiz {
         }
     }
 
+    public String encryptMsg(MpConfig config, String replyMsg, String timestamp, String nonce) {
+        try {
+            WXBizMsgCrypt crypt = getWxBizMsgCrypt(config);
+            return crypt.encryptMsg(replyMsg, timestamp, nonce);
+        } catch (Exception e) {
+            logger.error("", e);
+            throw new RuntimeException(e);
+        }
+    }
+
     private WXBizMsgCrypt getWxBizMsgCrypt(MpConfig config) throws AesException {
         WXBizMsgCrypt crypt = msgCryptMap.get(config.getAppId());
         if (crypt == null) {

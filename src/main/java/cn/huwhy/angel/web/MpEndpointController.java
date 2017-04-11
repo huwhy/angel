@@ -69,7 +69,8 @@ public class MpEndpointController extends BaseController {
             Command command = wxBizMsgCryptBiz.transform(config, signature, timestamp, nonce, xmlMsg.toString());
             String replyMsg = eventHandler.handler(command);
             logger.debug("reply-xml: {}", replyMsg);
-            printResponse(response, Strings.isNullOrEmpty(replyMsg) ? SUCCESS_MSG : replyMsg);
+            String encryptMsg = wxBizMsgCryptBiz.encryptMsg(config, replyMsg, timestamp, nonce);
+            printResponse(response, Strings.isNullOrEmpty(replyMsg) ? SUCCESS_MSG : encryptMsg);
         } else {
             logger.debug("endpoint: {} - failure", id);
             printResponse(response, ERROR_MSG);
