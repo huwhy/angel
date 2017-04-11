@@ -15,6 +15,7 @@ public class TextMsgListener extends Listener {
         Message message = new TextMessage();
         message.setToUserName(command.getFromUserName());
         message.setFromUserName(command.getToUserName());
+        message.setCreateTime(command.getCreateTime());
         message.setContent("http://angel.huwhy.cn/mp-article/5.html");
         return ReplyMsgBuilder.toXml(message);
     }
