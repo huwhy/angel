@@ -1,17 +1,23 @@
 package cn.huwhy.wx.sdk.api;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +38,10 @@ public class HttpClientUtil {
     }
 
     public static Result post(String url, String accessToken, String json) throws IOException {
+        return post(url, accessToken, json, null);
+    }
+
+    public static Result post(String url, String accessToken, String json, Class clazz) throws IOException {
         StringBuilder sbUrl = new StringBuilder(url);
         if (sbUrl.indexOf("?") != -1) {
             sbUrl.append("&access_token=").append(accessToken);
@@ -46,7 +56,32 @@ public class HttpClientUtil {
         }
 
         try (CloseableHttpResponse response = getClient().execute(httpPost)) {
-            return getResult(response, null);
+            return getResult(response, clazz);
+        }
+    }
+
+    public static Result postForm(String url, String accessToken, Map<String, Object> params, Class clazz) throws IOException {
+        StringBuilder sbUrl = new StringBuilder(url);
+        if (sbUrl.indexOf("?") != -1) {
+            sbUrl.append("&access_token=").append(accessToken);
+        } else {
+            sbUrl.append("?access_token=").append(accessToken);
+        }
+
+        HttpPost httpPost = new HttpPost(sbUrl.toString());
+
+        if (params != null && !params.isEmpty()) {
+            List<NameValuePair> pairs = new ArrayList<>();
+            for(Map.Entry<String, Object> entity : params.entrySet()) {
+                NameValuePair pair = new BasicNameValuePair(entity.getKey(), Objects.toString(entity.getValue()));
+                pairs.add(pair);
+            }
+            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairs, "UTF-8");
+            httpPost.setEntity(formEntity);
+        }
+
+        try (CloseableHttpResponse response = getClient().execute(httpPost)) {
+            return getResult(response, clazz);
         }
     }
 

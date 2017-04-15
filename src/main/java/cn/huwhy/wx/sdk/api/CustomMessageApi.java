@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSON;
 
 import cn.huwhy.wx.sdk.model.CustomMessage;
 import cn.huwhy.wx.sdk.model.Result;
+import cn.huwhy.wx.sdk.model.TextCustomMessage;
 
 /**
  * 微信客服消息接口
@@ -34,4 +35,10 @@ public abstract class CustomMessageApi {
         }
     }
 
+    public static void main(String[] args) {
+        String accessToken = "5DsDwC6UIpd75YzvCz20o0fpRX2XzDMwK-d1nX7U4aNKRelnmvQRCQCS-bVbpyb0ysalPvtxRot2vDY2QWOJUY2jpgfhQCfKSWYTw9PgTvgUs6O6GDTK_APC8LgL4n2gMYHjAHARDM";
+        TextCustomMessage message = CustomMessage.textMessage("o4FxKuCStiQwcUXrPSLxLmBtUc3s");
+        message.setContent("hello, world!");
+        send(accessToken, message);
+    }
 }

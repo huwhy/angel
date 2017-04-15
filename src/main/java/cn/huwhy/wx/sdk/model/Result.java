@@ -1,5 +1,6 @@
 package cn.huwhy.wx.sdk.model;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class Result {
@@ -53,5 +54,9 @@ public class Result {
 
     public boolean isOk() {
         return ZERO.equals(code);
+    }
+
+    public String toJson() {
+        return JSON.toJSONString(this);
     }
 }

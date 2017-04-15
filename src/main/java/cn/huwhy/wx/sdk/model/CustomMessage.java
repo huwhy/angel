@@ -7,6 +7,9 @@ public abstract class CustomMessage {
     public static NewsCustomMessage newsMessage(String toUser) {
         return new NewsCustomMessage(toUser);
     }
+    public static TextCustomMessage textMessage(String toUser) {
+        return new TextCustomMessage(toUser);
+    }
 
     @JSONField(name = "touser")
     private String toUser;
