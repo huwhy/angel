@@ -37,8 +37,9 @@ user:
   rolePrefix: ROLE_
 common:
   baseUrl: http://localhost:8888
+  uploadPath: /data/angel/upload
 
 beetl:
-  root: /data/admin/templates
+  root: /data/angel/templates
 
 
