@@ -63,6 +63,8 @@
       </el-form-item>
       <el-form-item label="内容">
         <el-button type="text" icon="picture" @click="dialogPicture = true"></el-button>
+        <el-button type="text" @click="insertBlank(1)">全角空格</el-button>
+        <el-button type="text" @click="insertBlank(2)">半角空格</el-button>
         <el-input type="textarea" id="edit" v-model="form.desc" class="edit"></el-input>
       </el-form-item>
     </el-col>
@@ -148,6 +150,15 @@
           this.form.desc = html;
         }
         this.dialogPicture = false;
+      },
+      insertBlank(type){
+        var a = type == 1 ? '&emsp;' : '&ensp;';
+        if (this.form.desc) {
+          var index = $("#edit textarea").caret('pos');
+          this.form.desc = this.form.desc.slice(0, index) + a + this.form.desc.slice(index, this.form.desc.length);
+        } else {
+          this.form.desc = a;
+        }
       }
     }
   };
