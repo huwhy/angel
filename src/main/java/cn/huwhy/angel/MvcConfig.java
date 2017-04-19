@@ -5,11 +5,14 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 
+import org.beetl.core.Tag;
+import org.beetl.core.TagFactory;
 import org.beetl.core.resource.FileResourceLoader;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +22,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -26,6 +31,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 import cn.huwhy.angel.beetl.Angel;
+import cn.huwhy.angel.beetl.BeiAn;
+import cn.huwhy.angel.beetl.SiteName;
+import cn.huwhy.angel.beetl.WebPageTag;
+import cn.huwhy.angel.web.WebInterceptor;
 
 /**
  * @author huwhy
@@ -59,6 +68,19 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     }
 
     @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        InterceptorRegistration registration = registry.addInterceptor(webInterceptor());
+        registration.addPathPatterns("/**");
+        registration.excludePathPatterns("/admin/**");
+        super.addInterceptors(registry);
+    }
+
+    @Bean
+    public WebInterceptor webInterceptor() {
+        return new WebInterceptor();
+    }
+
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**")
                 .addResourceLocations("classpath:/assets/");
@@ -79,11 +101,56 @@ public class MvcConfig extends WebMvcConfigurationSupport {
             beetlGroupUtilConfiguration.setResourceLoader(loader);
             beetlGroupUtilConfiguration.init();
             beetlGroupUtilConfiguration.getGroupTemplate().registerFunctionPackage("angel", angelFunctions);
+            beetlGroupUtilConfiguration.getGroupTemplate().registerTagFactory("web_page", pageTagFactory());
+            beetlGroupUtilConfiguration.getGroupTemplate().registerTagFactory("site_name", siteNameFactory());
+            beetlGroupUtilConfiguration.getGroupTemplate().registerTagFactory("bei_an", baiAnTagFactory());
             return beetlGroupUtilConfiguration;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Bean
+    public TagFactory pageTagFactory() {
+        return new TagFactory() {
+
+            @Autowired
+            private WebPageTag webPageTag;
+
+            @Override
+            public Tag createTag() {
+                return webPageTag;
+            }
+        };
+    }
+
+    @Bean
+    public TagFactory baiAnTagFactory() {
+        return new TagFactory() {
+
+            @Autowired
+            private BeiAn beiAn;
+
+            @Override
+            public Tag createTag() {
+                return beiAn;
+            }
+        };
+    }
+
+    @Bean
+    public TagFactory siteNameFactory() {
+        return new TagFactory() {
+
+            @Autowired
+            private SiteName siteName;
+
+            @Override
+            public Tag createTag() {
+                return siteName;
+            }
+        };
     }
 
     @Bean

@@ -1,4 +1,4 @@
-package cn.huwhy.angel.web;
+package cn.huwhy.angel.admin;
 
 import java.io.BufferedInputStream;
 import java.io.File;

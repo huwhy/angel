@@ -23,6 +23,14 @@ public class CategoryManager {
         return category.getId();
     }
 
+    public List<Category> findFirsts(Integer level, int size) {
+        return categoryDao.findFirsts(level, size);
+    }
+
+    public List<Category> findChildren(Integer pid) {
+        return categoryDao.findChildren(pid);
+    }
+
     public Paging<Category> findPaging(CategoryTerm term) {
         if (!Strings.isNullOrEmpty(term.getName())) {
             term.setName(term.getName() + "%");

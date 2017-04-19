@@ -1,4 +1,4 @@
-package cn.huwhy.angel.web;
+package cn.huwhy.angel.admin;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

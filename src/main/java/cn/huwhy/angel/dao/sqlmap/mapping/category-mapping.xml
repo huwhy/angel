@@ -31,4 +31,12 @@
       </if>
     </where>
   </select>
+
+  <select id="findFirsts" resultType="Category">
+    select * from article_catalog where `level`=#{level} limit #{size}
+  </select>
+
+  <select id="findChildren" resultType="Category">
+    select * from article_catalog where pid=#{pid}
+  </select>
 </mapper>

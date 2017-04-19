@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.SeoDao">
+  <sql id="COLUMNS">
+    `id`, `seo_key`, `target_id`, `title`, `description`, `keywords`, `updated`, `created`
+  </sql>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="Seo">
+    INSERT INTO seo (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{seoKey.value}, #{targetId}, #{title}, #{description}, #{keywords}, now(), now()
+    ) on duplicate key update
+    `title`=VALUES(`title`), updated=VALUES(updated)
+  </insert>
+
+  <select id="get" resultType="Seo">
+    select * from seo where id=#{id}
+  </select>
+
+  <select id="getSeo" resultType="Seo">
+    select * from seo where seo_key =#{seoKey.value} and target_id=#{targetId}
+  </select>
+</mapper>

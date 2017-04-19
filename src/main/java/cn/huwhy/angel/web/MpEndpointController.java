@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.common.base.Strings;
 
+import cn.huwhy.angel.admin.BaseController;
 import cn.huwhy.angel.biz.WxBizMsgCryptBiz;
 import cn.huwhy.angel.biz.manager.MpConfigManager;
 import cn.huwhy.angel.po.MpConfig;
