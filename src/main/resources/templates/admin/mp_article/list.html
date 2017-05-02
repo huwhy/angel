@@ -63,7 +63,7 @@
     data() {
       return {
         form: {
-          url: '/article/next',
+          url: '/admin/article/next',
           params: {
             title: '',
             firstCid: 0,
@@ -97,7 +97,7 @@
       display(row) {
         Common.postForm(
             {
-              url: '/article/display',
+              url: '/admin/article/display',
               params:{id: row.id},
               ok: function(json) {
                 row.status2 = '已发布';
@@ -108,7 +108,7 @@
       hide(row) {
         Common.postForm(
             {
-              url: '/article/hide',
+              url: '/admin/article/hide',
               params:{id: row.id},
               ok: function(json) {
                 row.status2 = '未发布';
@@ -117,7 +117,7 @@
         );
       },
       addHtml(){
-        location.href = "/mp-article/add.html?mid=4";
+        location.href = "/admin/mp-article/add.html?mid=4";
       },
       handleCurrentChange(val) {
         this.currentPage = val;
