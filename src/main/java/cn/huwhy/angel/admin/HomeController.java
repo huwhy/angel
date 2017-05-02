@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class HomeController {
 
-    @RequestMapping(value = {"/", "/index.html"})
+    @RequestMapping(value = {"", "/", "/index.html"})
     public String home(HttpServletRequest request) {
         request.getSession().setMaxInactiveInterval(0);
         return "admin/index";
