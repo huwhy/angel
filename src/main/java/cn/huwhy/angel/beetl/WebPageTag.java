@@ -69,7 +69,7 @@ public class WebPageTag extends GeneralVarTagBinding {
             }
         }
         html.append("</form>")
-                .append("<script src=\"/js/page.js\"></script>");
+                .append("<script src=\"/assets/blog/js/page.js\"></script>");
 
         try {
             ctx.byteWriter.writeString(html.toString());

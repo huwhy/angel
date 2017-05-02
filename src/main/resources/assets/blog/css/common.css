@@ -187,7 +187,7 @@ input, textarea, keygen, select, button, meter, progress {
   z-index: 461;
   top: 13px;
   right: 8px;
-  background: url("/img/icons.png") no-repeat -20px -70px;
+  background: url("/assets/blog/image/icons.png") no-repeat -20px -70px;
   height: 6px;
   width: 10px;
 }
@@ -199,7 +199,7 @@ input, textarea, keygen, select, button, meter, progress {
 }
 
 .i_search{
-  background: url("http://i.meilishuo.net/css/images/header/mls_global140607.png") no-repeat;
+  background: url("") no-repeat;
   padding: 1px 8px;
 }
 
@@ -842,7 +842,7 @@ div.zoomMask { position:absolute; cursor:move; z-index:1; }
 .i-icon2 {
   display: inline-block;
   vertical-align: text-bottom;
-  background-image: url(../../img/icon2.png);
+  background-image: url(/assets/blog/image/icon2.png);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -859,7 +859,7 @@ div.zoomMask { position:absolute; cursor:move; z-index:1; }
 .i-icon2 {
   display: inline-block;
   vertical-align: text-bottom;
-  background-image: url(../../img/icon2.png);
+  background-image: url(/assets/blog/image/icon2.png);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -896,9 +896,8 @@ div.zoomMask { position:absolute; cursor:move; z-index:1; }
 .i-icon2 {
   display: inline-block;
   vertical-align: text-bottom;
-  background-image: url(../../img/icon2.png);
+  background-image: url(/assets/blog/image/icon2.png);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
 }
-* {

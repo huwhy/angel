@@ -145,4 +145,12 @@ public class Article extends BaseModel<Integer> {
     public void setThirdName(String thirdName) {
         this.thirdName = thirdName;
     }
+
+    public String[] getTagList() {
+        if (tags != null) {
+            return tags.split(" ");
+        } else {
+            return new String[]{};
+        }
+    }
 }

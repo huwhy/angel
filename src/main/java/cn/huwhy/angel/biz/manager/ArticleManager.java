@@ -22,6 +22,10 @@ public class ArticleManager {
         return article.getId();
     }
 
+    public Article get(Integer id) {
+        return articleDao.get(id);
+    }
+
     public Paging<Article> findPaging(ArticleTerm term) {
         List<Article> data = articleDao.findPaging(term);
         return new Paging<>(term, data);

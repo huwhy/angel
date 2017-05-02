@@ -42,6 +42,10 @@
     </where>
   </select>
 
+  <select id="get" resultType="Article">
+    select <include refid="COLUMNS" /> from article where id=#{id}
+  </select>
+
   <update id="setStatus">
     update article set status = #{status.value} where id=#{id}
   </update>

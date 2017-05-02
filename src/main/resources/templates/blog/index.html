@@ -17,13 +17,13 @@
       <%if(isNotEmpty(article.imgUrl)){%>
       <!--看点展示-->
       <div class="clearfix mod-b mod-art">
-        <a class="pull-left mod-thumb" href="${article.~path}" target="_blank">
+        <a class="pull-left mod-thumb" href="/article/${article.id}.html" target="_blank">
           <img src="/file${article.imgUrl!}">
         </a>
 
         <div class="mob-ctt">
           <h3>
-            <a class="title" href="${article.~path}" target="_blank">${article.title!}</a>
+            <a class="title" href="/article/${article.id}.html" target="_blank">${article.title!}</a>
           </h3>
 
           <div class="mob-author">
@@ -69,13 +69,6 @@
       </div>
       <%}%>
       <%}%>
-      <div class="clearfix mod-b mod-jinju">
-        <script type="text/javascript">
-          /*首页banner*/
-          var cpro_id = "u2081284";
-        </script>
-        <script src="https://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
-      </div>
     </div>
     <#web_page val="${paging}" />
   </div>

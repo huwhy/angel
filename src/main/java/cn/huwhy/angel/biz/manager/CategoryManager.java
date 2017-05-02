@@ -23,6 +23,10 @@ public class CategoryManager {
         return category.getId();
     }
 
+    public Category get(Integer id) {
+        return categoryDao.get(id);
+    }
+
     public List<Category> findFirsts(Integer level, int size) {
         return categoryDao.findFirsts(level, size);
     }

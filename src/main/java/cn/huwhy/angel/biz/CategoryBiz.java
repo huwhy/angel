@@ -18,6 +18,10 @@ public class CategoryBiz {
         return categoryManager.save(category);
     }
 
+    public Category get(Integer id) {
+        return categoryManager.get(id);
+    }
+
     public Paging<Category> findPaging(CategoryTerm term) {
         return categoryManager.findPaging(term);
     }

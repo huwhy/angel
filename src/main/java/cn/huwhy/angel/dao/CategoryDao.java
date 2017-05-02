@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import cn.huwhy.angel.ibatis.BaseDao;
 import cn.huwhy.angel.po.Category;
 
-public interface CategoryDao extends BaseDao {
+public interface CategoryDao extends BaseDao<Category, Integer> {
 
     List<Category> findFirsts(@Param("level") int level, @Param("size") int size);
 
