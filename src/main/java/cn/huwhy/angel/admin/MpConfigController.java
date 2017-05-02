@@ -19,7 +19,7 @@ import cn.huwhy.angel.po.MpConfig;
 import cn.huwhy.angel.term.MpConfigTerm;
 
 @Controller
-@RequestMapping("/mp")
+@RequestMapping("/admin/mp")
 public class MpConfigController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class MpConfigController {
         Paging<MpConfig> paging = mpConfigManager.findPaging(term);
         modelMap.addAttribute("paging", paging);
         modelMap.addAttribute("data", JSON.toJSONString(paging.getData()));
-        return "mp/list";
+        return "admin/mp/list";
     }
 
     @RequestMapping("next")

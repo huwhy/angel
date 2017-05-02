@@ -23,7 +23,7 @@ import cn.huwhy.angel.term.MpArticleTerm;
 import cn.huwhy.angel.util.EnumUtils;
 
 @Controller
-@RequestMapping("/mp-article")
+@RequestMapping("/admin/mp-article")
 public class MpArticleController {
 
     @Autowired
@@ -36,19 +36,19 @@ public class MpArticleController {
         modelMap.addAttribute("paging", paging);
         modelMap.addAttribute("statuses", ArticleStatus.values());
         modelMap.addAttribute("data", JSON.toJSONString(paging.getData()));
-        return "mp_article/list";
+        return "admin/mp_article/list";
     }
 
     @RequestMapping("{id:\\d+}.html")
     public String detail(ModelMap modelMap, @PathVariable("id") Integer id) {
         MpArticle article = articleBiz.get(id);
         modelMap.addAttribute("article", article);
-        return "mp_article/detail";
+        return "admin/mp_article/detail";
     }
 
     @RequestMapping("add.html")
     public String addHtml() {
-        return "mp_article/add";
+        return "admin/mp_article/add";
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)

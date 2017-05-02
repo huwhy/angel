@@ -12,7 +12,7 @@ public class HomeController {
     @RequestMapping(value = {"/", "/index.html"})
     public String home(HttpServletRequest request) {
         request.getSession().setMaxInactiveInterval(0);
-        return "index";
+        return "admin/index";
     }
 
 }

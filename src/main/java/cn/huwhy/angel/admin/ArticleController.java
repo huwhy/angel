@@ -19,7 +19,7 @@ import cn.huwhy.angel.term.ArticleTerm;
 import cn.huwhy.angel.util.EnumUtils;
 
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/admin/article")
 public class ArticleController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class ArticleController {
         modelMap.addAttribute("paging", paging);
         modelMap.addAttribute("statuses", ArticleStatus.values());
         modelMap.addAttribute("data", JSON.toJSONString(paging.getData()));
-        return "article/list";
+        return "admin/article/list";
     }
 
     @RequestMapping("next")

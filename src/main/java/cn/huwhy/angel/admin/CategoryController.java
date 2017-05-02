@@ -16,7 +16,7 @@ import cn.huwhy.angel.po.Category;
 import cn.huwhy.angel.term.CategoryTerm;
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/admin/category")
 public class CategoryController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class CategoryController {
         Paging<Category> paging = categoryBiz.findPaging(term);
         modelMap.addAttribute("paging", paging);
         modelMap.addAttribute("data", JSON.toJSONString(paging.getData()));
-        return "category/list";
+        return "admin/category/list";
     }
 
     @RequestMapping("next")

@@ -15,7 +15,7 @@ import cn.huwhy.angel.po.User;
 import cn.huwhy.angel.term.UserTerm;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class UserController {
         Paging<User> paging = userBiz.findUsers(new UserTerm());
         modelMap.addAttribute("paging", paging);
         modelMap.addAttribute("data", JSON.toJSONString(paging.getData()));
-        return "user/list";
+        return "admin/user/list";
     }
 
     @RequestMapping("next")
