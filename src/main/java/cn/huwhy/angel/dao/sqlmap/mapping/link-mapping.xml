@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.LinkDao">
+  <sql id="COLUMNS">
+    `id`, `name`, `url`, `type`, `created`, `creator`
+  </sql>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="Link">
+    INSERT INTO link (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{name}, #{url}, #{type.value}, now(), #{creator}
+    )
+  </insert>
+
+
+  <select id="findLinksByUid" resultType="Link">
+    select <include refid="COLUMNS" /> from link where creator=#{uid} and `type`=#{type.value}
+  </select>
+</mapper>

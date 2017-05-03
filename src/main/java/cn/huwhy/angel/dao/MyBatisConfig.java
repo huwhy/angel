@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 import cn.huwhy.angel.config.DbConfig;
 import cn.huwhy.angel.po.Article;
 import cn.huwhy.angel.po.Category;
+import cn.huwhy.angel.po.Link;
 import cn.huwhy.angel.po.MpArticle;
 import cn.huwhy.angel.po.MpConfig;
 import cn.huwhy.angel.po.Param;
@@ -65,7 +66,8 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         bean.setTypeAliasesPackage("cn.huwhy.angel.po");
         bean.setTypeAliases(new Class[]{
                 User.class, Category.class, Article.class,
-                MpArticle.class, MpConfig.class, Param.class, Seo.class
+                MpArticle.class, MpConfig.class, Param.class, Seo.class,
+                Link.class
         });
         bean.setConfigLocation(new ClassPathResource("cn/huwhy/angel/dao/sqlmap/sqlmap.xml"));
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();

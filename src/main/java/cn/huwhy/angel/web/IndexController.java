@@ -18,11 +18,13 @@ import com.google.common.collect.Lists;
 
 import cn.huwhy.angel.biz.ArticleBiz;
 import cn.huwhy.angel.biz.CategoryBiz;
+import cn.huwhy.angel.biz.manager.LinkManager;
 import cn.huwhy.angel.biz.manager.SeoManager;
 import cn.huwhy.angel.common.Paging;
 import cn.huwhy.angel.enums.ArticleStatus;
 import cn.huwhy.angel.po.Article;
 import cn.huwhy.angel.po.Category;
+import cn.huwhy.angel.po.Link;
 import cn.huwhy.angel.term.ArticleTerm;
 import cn.huwhy.angel.vo.Crumb;
 
@@ -30,11 +32,13 @@ import cn.huwhy.angel.vo.Crumb;
 public class IndexController {
 
     @Autowired
-    private ArticleBiz articleBiz;
+    private ArticleBiz  articleBiz;
     @Autowired
     private CategoryBiz categoryBiz;
     @Autowired
-    private SeoManager seoManager;
+    private SeoManager  seoManager;
+    @Autowired
+    private LinkManager linkManager;
 
     @RequestMapping({"/", "index.html"})
     public String home(ModelMap map, HttpServletRequest request) {
@@ -107,6 +111,13 @@ public class IndexController {
         }
         addCrumb(request, new Crumb(article.getTitle()));
         return "blog/article";
+    }
+
+    @RequestMapping("/hao123.html")
+    public String hao123(ModelMap map, HttpServletRequest request) {
+        List<Link> links = linkManager.findLinks();
+        map.addAttribute("links", links);
+        return "blog/hao123";
     }
 
     private void addCrumb(HttpServletRequest request, Crumb... crumbs) {
