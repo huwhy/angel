@@ -8,6 +8,8 @@ import cn.huwhy.wx.sdk.message.ReplyMsgBuilder;
 import cn.huwhy.wx.sdk.message.TextMessage;
 import cn.huwhy.wx.sdk.model.Command;
 
+import static cn.huwhy.wx.sdk.model.Command.EVENT_KEYS.TEXT_MSG;
+
 @Component
 public class TextMsgListener extends Listener {
     @Override
@@ -16,7 +18,11 @@ public class TextMsgListener extends Listener {
         message.setToUserName(command.getFromUserName());
         message.setFromUserName(command.getToUserName());
         message.setCreateTime(command.getCreateTime());
-        message.setContent("http://angel.huwhy.cn/mp-article/5.html");
+        if (command.getCommandKey().equals(TEXT_MSG) && command.getContent().equals("写")) {
+            message.setContent("https://www.huwhy.cn/admin/mp-article/add2.html");
+        } else {
+            message.setContent("https://www.huwhy.cn/mp-article/5.html");
+        }
         return ReplyMsgBuilder.toXml(message);
     }
 }
