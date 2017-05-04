@@ -4,7 +4,10 @@
   <title>添加文章</title>
   <%include("/admin/common/style.html"){}%>
   <style>
-    .el-form{ padding-top:5px;}
+    .el-form {
+      padding-top: 5px;
+    }
+
     .phone {
       width: 500px;
       height: calc(100vh - 200px);
@@ -13,18 +16,22 @@
       word-break: break-all;
       word-wrap: break-word
     }
-    .phone *{
+
+    .phone * {
       width: 500px;
       word-break: break-all;
       word-wrap: break-word
     }
+
     .edit textarea {
       width: 500px;
       height: calc(100vh - 200px);
     }
+
     .avatar-uploader {
       text-align: center;
     }
+
     .avatar-uploader .el-upload {
       border: 1px dashed #d9d9d9;
       border-radius: 6px;
@@ -32,9 +39,11 @@
       position: relative;
       overflow: hidden;
     }
+
     .avatar-uploader .el-upload:hover {
       border-color: #20a0ff;
     }
+
     .avatar-uploader-icon {
       font-size: 28px;
       color: #8c939d;
@@ -43,12 +52,14 @@
       line-height: 178px;
       text-align: center;
     }
+
     .avatar {
       width: 178px;
       height: 178px;
       display: block;
     }
-    #hello img{
+
+    #hello img {
       width: 100%;
     }
   </style>
@@ -69,8 +80,7 @@
       </el-form-item>
     </el-col>
     <el-col :span="10">
-      <div class="grid-content bg-purple phone" id="hello">
-
+      <div class="grid-content bg-purple phone" id="hello" v-html="html">
       </div>
     </el-col>
   </el-row>
@@ -159,6 +169,11 @@
         } else {
           this.form.desc = a;
         }
+      }
+    },
+    computed: {
+      html: function () {
+        return converter.makeHtml(this.form.desc);
       }
     }
   };
