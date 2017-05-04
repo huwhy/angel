@@ -51,6 +51,11 @@ public class MpArticleController {
         return "admin/mp_article/add";
     }
 
+    @RequestMapping("add2.html")
+    public String addHtml2() {
+        return "admin/mp_article/add2";
+    }
+
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     public Json save(String title, String content) {
