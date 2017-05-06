@@ -28,9 +28,9 @@ public class TextMsgListener extends Listener {
         if (command.getCommandKey().equals(TEXT_MSG)) {
             MpReply reply = mpReplyManager.getByKeyword(message.getContent());
             if (reply != null) {
-                message.setContent(reply.getContent());
+                message.setContent(command.getContent());
             } else {
-                message.setContent("success");
+                message.setContent("");
             }
         }
         return ReplyMsgBuilder.toXml(message);
