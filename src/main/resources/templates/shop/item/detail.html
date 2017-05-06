@@ -2,15 +2,16 @@
 <head>
   <meta charset="UTF-8">
   <title>商品详情页</title>
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-  <link rel="stylesheet" href="/assets/shop/css/item.css" />
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <link rel="stylesheet" href="/assets/shop/css/item.css"/>
   <script type="text/javascript" src="/assets/js/flexible.js"></script>
 </head>
 <body>
 <div class="app">
   <div class="carousel">
-    <img style="width: 100%" src="https://gd1.alicdn.com/imgextra/i1/203036173/TB20Q0EX3_xQeBjy0FoXXX1vpXa_!!203036173.jpg?" />
+    <img style="width: 100%"
+         src="https://gd1.alicdn.com/imgextra/i1/203036173/TB20Q0EX3_xQeBjy0FoXXX1vpXa_!!203036173.jpg?"/>
   </div>
   <div class="box title">
     <div>
@@ -48,19 +49,23 @@
   <div class="box desc">
     <div class="text_image_wrap">
       <div class="text_image_img">
-        <img class="image_img" src="https://img.alicdn.com/imgextra/i3/203036173/TB2RHbuiFXXXXbGXpXXXXXXXXXX_!!203036173.jpg?" alt="图片">
+        <img class="image_img"
+             src="https://img.alicdn.com/imgextra/i3/203036173/TB2RHbuiFXXXXbGXpXXXXXXXXXX_!!203036173.jpg?" alt="图片">
       </div>
       <div class="text_image_img">
-        <img class="image_img" src="https://img.alicdn.com/imgextra/i1/203036173/TB2JPsoX4fxQeBjSsppXXXeoFXa_!!203036173.jpg?" alt="图片">
+        <img class="image_img"
+             src="https://img.alicdn.com/imgextra/i1/203036173/TB2JPsoX4fxQeBjSsppXXXeoFXa_!!203036173.jpg?" alt="图片">
       </div>
       <div class="text_image_word">
         无论时尚怎么变，针织毛衣还会是众多妹纸的挚爱，
       </div>
       <div class="text_image_img">
-        <img class="image_img" src="https://img.alicdn.com/imgextra/i3/203036173/TB2QJfuXBLzQeBjSZFjXXcscpXa_!!203036173.jpg?" alt="图片">
+        <img class="image_img"
+             src="https://img.alicdn.com/imgextra/i3/203036173/TB2QJfuXBLzQeBjSZFjXXcscpXa_!!203036173.jpg?" alt="图片">
       </div>
       <div class="text_image_img">
-        <img class="image_img" src="https://img.alicdn.com/imgextra/i3/203036173/TB2xJYtXunAQeBjSZFGXXazoFXa_!!203036173.jpg?" alt="图片">
+        <img class="image_img"
+             src="https://img.alicdn.com/imgextra/i3/203036173/TB2xJYtXunAQeBjSZFGXXazoFXa_!!203036173.jpg?" alt="图片">
       </div>
 
     </div>
@@ -75,7 +80,7 @@
           店铺
         </div>
       </div>
-      <div class="btn yellow">
+      <div class="btn yellow btn-buy">
         购买
       </div>
     </div>
@@ -83,3 +88,20 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+  var ua = navigator.userAgent;
+  var url = "detail.tmall.com/item.htm?id=530176615735";
+  var tb = "taobao://" + url;
+
+  if (ua.match(/iPhone|iPod/i) != null) {
+    //iphone代码
+    window.location = tb;
+  }
+  else if (ua.match(/Android/i) != null) {
+    window.location = tb;
+  }
+  else if (ua.match(/iPad/i) != null) {
+    //iPad代码
+    window.location = tb;
+  }
+</script>
