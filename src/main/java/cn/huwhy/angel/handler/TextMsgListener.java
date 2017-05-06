@@ -33,7 +33,7 @@ public class TextMsgListener extends Listener {
         message.setFromUserName(command.getToUserName());
         message.setCreateTime(command.getCreateTime());
         if (command.getCommandKey().equals(TEXT_MSG)) {
-            MpReply reply = mpReplyManager.getByKeyword(message.getContent());
+            MpReply reply = mpReplyManager.getByKeyword(command.getContent());
             if (reply != null) {
                 message.setContent(reply.getContent());
             } else {
