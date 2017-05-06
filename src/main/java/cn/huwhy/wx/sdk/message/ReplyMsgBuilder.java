@@ -29,7 +29,7 @@ public class ReplyMsgBuilder {
             "<Title><![CDATA[${item.title!}]]></Title>" +
             "<Description><![CDATA[${item.description!}]]></Description>" +
             "<PicUrl><![CDATA[${item.picUrl!}]]></PicUrl>" +
-            "<Url><![CDATA[${item.picUrl}]]></Url>" +
+            "<Url><![CDATA[${item.url}]]></Url>" +
             "</item>" +
             "<%}%>" +
             "</Articles>";

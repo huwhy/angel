@@ -89,5 +89,23 @@
     ${angel.markdown(article.content!)}
   </div>
   <script src="/assets/js/zepto.min.js"></script>
+  <script type="text/javascript">
+    var ua = navigator.userAgent;
+    var url = "detail.tmall.com/item.htm?id=530176615735";
+    var tb = "taobao://" + url;
+    if(ua.match(/iPhone|iPod/i) != null){
+      //iphone代码
+      window.setTimeout(function() {window.location = tb;},3000);
+    }
+    else if(ua.match(/Android/i) != null){
+      window.setTimeout(function () {
+        window.location = tb;
+      }, 3000);
+    }
+    else if(ua.match(/iPad/i) != null){
+    //iPad代码
+      window.setTimeout(function() {window.location = tb;},3000);
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.MpReplyDao">
+  <sql id="COLUMNS">
+    `id`,deleted, keyword, content, `type`, `updated`, `created`
+  </sql>
+
+  <insert id="save" keyProperty="id" useGeneratedKeys="true" parameterType="MpReply">
+    INSERT INTO mp_reply (
+    <include refid="COLUMNS" />
+    ) values (
+    #{id}, #{deleted}, #{keyword}, #{content}, #{type.value}, now(), now()
+    ) on duplicate key update updated=VALUES(updated)
+  </insert>
+
+  <select id="getByKeyword" resultType="MpReply">
+    select <include refid="COLUMNS" /> from mp_reply where keyword=#{keyword}
+  </select>
+
+  <select id="get" resultType="MpReply">
+    select <include refid="COLUMNS" /> from mp_reply where id=#{id}
+  </select>
+
+</mapper>
