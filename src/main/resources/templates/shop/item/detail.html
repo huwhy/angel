@@ -80,7 +80,7 @@
           店铺
         </div>
       </div>
-      <div class="btn yellow btn-buy">
+      <div class="btn yellow btn-buy" onclick="openTaobao();">
         购买
       </div>
     </div>
@@ -92,16 +92,17 @@
   var ua = navigator.userAgent;
   var url = "detail.tmall.com/item.htm?id=530176615735";
   var tb = "taobao://" + url;
-
-  if (ua.match(/iPhone|iPod/i) != null) {
-    //iphone代码
-    window.location = tb;
-  }
-  else if (ua.match(/Android/i) != null) {
-    window.location = tb;
-  }
-  else if (ua.match(/iPad/i) != null) {
-    //iPad代码
-    window.location = tb;
+  function openTaobao() {
+    if (ua.match(/iPhone|iPod/i) != null) {
+      //iphone代码
+      window.location = tb;
+    }
+    else if (ua.match(/Android/i) != null) {
+      window.location = tb;
+    }
+    else if (ua.match(/iPad/i) != null) {
+      //iPad代码
+      window.location = tb;
+    }
   }
 </script>
