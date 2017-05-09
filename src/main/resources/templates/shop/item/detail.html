@@ -91,9 +91,13 @@
 </html>
 <script type="text/javascript">
   var ua = navigator.userAgent;
-  var url = "detail.tmall.com/item.htm?id=530176615735";
-  var tb = "taobao://" + url;
+  var url = "${item.tbUrl}";
+  var tb = "taobao://" + url.replace("http://", "").replace("https://", "");
   function openTaobao() {
+    if(ua.match(/MicroMessenger/i)=="MicroMessenger") {
+      alert("请右上角用浏览器打开");
+      return;
+    }
     if (ua.match(/iPhone|iPod/i) != null) {
       //iphone代码
       window.location = tb;

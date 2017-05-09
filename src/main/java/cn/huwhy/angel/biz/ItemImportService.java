@@ -49,7 +49,6 @@ public class ItemImportService {
     }
 
     private Json importTaobaoItem(String taobaoItemUrl) throws IOException {
-        Document doc = Jsoup.connect(taobaoItemUrl).userAgent("Mozilla").get();
         Item item = new Item();
         Matcher idM = ID_P.matcher(taobaoItemUrl);
         if (idM.find()) {
@@ -57,6 +56,7 @@ public class ItemImportService {
             item.setId(Long.valueOf(idStr));
         }
         item.setTbUrl("https://item.taobao.com/item.htm?id=" + item.getId());
+        Document doc = Jsoup.connect(item.getTbUrl()).userAgent("Mozilla").get();
         Elements titleEs = doc.select(".tb-main-title");
         if (titleEs.size() > 0) {
             item.setTitle(StringUtil.substring(titleEs.first().text(), 0, 32));
@@ -133,8 +133,6 @@ public class ItemImportService {
     }
 
     private Json importTMallItem(String tMallUrl) throws IOException {
-        Document doc = Jsoup.connect(tMallUrl).userAgent("Mozilla").get();
-
         Item item = new Item();
         Matcher idM = ID_P.matcher(tMallUrl);
         if (idM.find()) {
@@ -142,6 +140,8 @@ public class ItemImportService {
             item.setId(Long.valueOf(idStr));
         }
         item.setTbUrl("https://detail.tmall.com/item.htm?id=" + item.getId());
+
+        Document doc = Jsoup.connect(item.getTbUrl()).userAgent("Mozilla").get();
         Elements titleEs = doc.select(".tb-detail-hd h1");
         if (titleEs.size() > 0) {
             item.setTitle(StringUtil.substring(titleEs.first().text(), 0, 32));
