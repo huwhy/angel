@@ -1,7 +1,6 @@
 package cn.huwhy.angel.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletInputStream;
@@ -75,27 +74,6 @@ public class MpEndpointController extends BaseController {
         } else {
             logger.debug("endpoint: {} - failure", id);
             printResponse(response, ERROR_MSG);
-        }
-    }
-
-    void printResponse(HttpServletResponse response, String message) {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        response.setStatus(HttpServletResponse.SC_OK);
-
-        PrintWriter writer = null;
-        try {
-            writer = response.getWriter();
-            if (!Strings.isNullOrEmpty(message))
-                writer.write(message);
-        } catch (Exception e) {
-            logger.error("WxMpEndpointController - printResponse - exception", e);
-        } finally {
-            try {
-                if (null != writer)
-                    writer.close();
-            } catch (Exception ignore) {
-            }
         }
     }
 

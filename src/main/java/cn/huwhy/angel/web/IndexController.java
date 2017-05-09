@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 
+import cn.huwhy.angel.admin.BaseController;
 import cn.huwhy.angel.biz.ArticleBiz;
 import cn.huwhy.angel.biz.CategoryBiz;
 import cn.huwhy.angel.biz.manager.LinkManager;
@@ -29,7 +31,7 @@ import cn.huwhy.angel.term.ArticleTerm;
 import cn.huwhy.angel.vo.Crumb;
 
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
 
     @Autowired
     private ArticleBiz  articleBiz;
@@ -39,6 +41,11 @@ public class IndexController {
     private SeoManager  seoManager;
     @Autowired
     private LinkManager linkManager;
+
+    @RequestMapping("/MP_verify_{text}.txt")
+    public void mpVerify(@PathVariable String text, HttpServletResponse response) {
+        printResponse(response, text);
+    }
 
     @RequestMapping({"/", "index.html"})
     public String home(ModelMap map, HttpServletRequest request) {
