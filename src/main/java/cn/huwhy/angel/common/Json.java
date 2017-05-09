@@ -50,16 +50,18 @@ public class Json implements Serializable {
         return code;
     }
 
-    public void setCode(Long code) {
+    public Json setCode(Long code) {
         this.code = code;
+        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public Json setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     public Object getData() {

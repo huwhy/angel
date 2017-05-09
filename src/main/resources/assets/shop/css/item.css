@@ -34,6 +34,7 @@ div{
 
 .app{
   width: 10rem;
+  margin: 0 auto;
 }
 .box{
   width: 10rem;
@@ -123,6 +124,10 @@ div{
 }
 .desc{
 
+}
+.desc img{
+  width: 100%;
+  height: auto;
 }
 .info-parameter {
   font-size: 0.346rem;

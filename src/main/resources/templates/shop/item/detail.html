@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>商品详情页</title>
+  <title>${item.title!}</title>
   <meta name="format-detection" content="telephone=no"/>
   <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
   <link rel="stylesheet" href="/assets/shop/css/item.css"/>
@@ -11,19 +11,19 @@
 <div class="app">
   <div class="carousel">
     <img style="width: 100%"
-         src="https://gd1.alicdn.com/imgextra/i1/203036173/TB20Q0EX3_xQeBjy0FoXXX1vpXa_!!203036173.jpg?"/>
+         src="${item.mainImg!}"/>
   </div>
   <div class="box title">
     <div>
-      ZZhen2016秋装新款 百搭宽松大码洞洞毛衣韩范大袖镂空毛线
+      ${item.title!}
     </div>
   </div>
   <div class="box props">
     <div class="price">
-      ￥0.01~0.50
+      ￥${item.lowPrice!, '#0.00'}${item.lowPrice != item.highPrice? item.highPrice, '~#0.00'}
     </div>
     <div class="stock">
-      库存：57
+      库存：${item.stock!1}
     </div>
   </div>
   <div class="box relates">
@@ -47,28 +47,29 @@
     </div>
   </div>
   <div class="box desc">
-    <div class="text_image_wrap">
-      <div class="text_image_img">
-        <img class="image_img"
-             src="https://img.alicdn.com/imgextra/i3/203036173/TB2RHbuiFXXXXbGXpXXXXXXXXXX_!!203036173.jpg?" alt="图片">
-      </div>
-      <div class="text_image_img">
-        <img class="image_img"
-             src="https://img.alicdn.com/imgextra/i1/203036173/TB2JPsoX4fxQeBjSsppXXXeoFXa_!!203036173.jpg?" alt="图片">
-      </div>
-      <div class="text_image_word">
-        无论时尚怎么变，针织毛衣还会是众多妹纸的挚爱，
-      </div>
-      <div class="text_image_img">
-        <img class="image_img"
-             src="https://img.alicdn.com/imgextra/i3/203036173/TB2QJfuXBLzQeBjSZFjXXcscpXa_!!203036173.jpg?" alt="图片">
-      </div>
-      <div class="text_image_img">
-        <img class="image_img"
-             src="https://img.alicdn.com/imgextra/i3/203036173/TB2xJYtXunAQeBjSZFGXXazoFXa_!!203036173.jpg?" alt="图片">
-      </div>
+    ${item.content!}
+    <!--<div class="text_image_wrap">-->
+      <!--<div class="text_image_img">-->
+        <!--<img class="image_img"-->
+             <!--src="https://img.alicdn.com/imgextra/i3/203036173/TB2RHbuiFXXXXbGXpXXXXXXXXXX_!!203036173.jpg?" alt="图片">-->
+      <!--</div>-->
+      <!--<div class="text_image_img">-->
+        <!--<img class="image_img"-->
+             <!--src="https://img.alicdn.com/imgextra/i1/203036173/TB2JPsoX4fxQeBjSsppXXXeoFXa_!!203036173.jpg?" alt="图片">-->
+      <!--</div>-->
+      <!--<div class="text_image_word">-->
+        <!--无论时尚怎么变，针织毛衣还会是众多妹纸的挚爱，-->
+      <!--</div>-->
+      <!--<div class="text_image_img">-->
+        <!--<img class="image_img"-->
+             <!--src="https://img.alicdn.com/imgextra/i3/203036173/TB2QJfuXBLzQeBjSZFjXXcscpXa_!!203036173.jpg?" alt="图片">-->
+      <!--</div>-->
+      <!--<div class="text_image_img">-->
+        <!--<img class="image_img"-->
+             <!--src="https://img.alicdn.com/imgextra/i3/203036173/TB2xJYtXunAQeBjSZFGXXazoFXa_!!203036173.jpg?" alt="图片">-->
+      <!--</div>-->
 
-    </div>
+    <!--</div>-->
   </div>
   <div class="box footer">
     <div class="btn_box top-line">
