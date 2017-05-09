@@ -28,18 +28,17 @@ public class TextMsgListener extends Listener {
     @Override
     public String handle(Command command) {
         logger.info("command: {}", JSON.toJSONString(command));
-        Message message = new TextMessage();
-        message.setToUserName(command.getFromUserName());
-        message.setFromUserName(command.getToUserName());
-        message.setCreateTime(command.getCreateTime());
         if (command.getCommandKey().equals(TEXT_MSG)) {
+            Message message = new TextMessage();
+            message.setToUserName(command.getFromUserName());
+            message.setFromUserName(command.getToUserName());
+            message.setCreateTime(command.getCreateTime());
             MpReply reply = mpReplyManager.getByKeyword(command.getContent());
             if (reply != null) {
                 message.setContent(reply.getContent());
-            } else {
-                message.setContent("");
+                return ReplyMsgBuilder.toXml(message);
             }
         }
-        return ReplyMsgBuilder.toXml(message);
+        return "";
     }
 }

@@ -279,6 +279,8 @@ public class WXBizMsgCrypt {
 	 */
 	public boolean check(String msgSignature, String timeStamp, String nonce)
 			throws AesException, NoSuchAlgorithmException {
+		logger.debug("check: msg-sign:{}, token:{}, timestamp:{}, nonce:{}",
+				msgSignature, token, timeStamp, nonce);
 		String signature = SHA1.gen(token, timeStamp, nonce);
 		logger.debug("check: msg-sign:{}, token:{}, timestamp:{}, nonce:{}, sign:{}",
 				msgSignature, token, timeStamp, nonce, signature);
