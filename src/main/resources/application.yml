@@ -22,9 +22,9 @@ server:
 
 db:
   driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false
-  username: root
-  password: abc123
+  url: jdbc:mysql://139.159.221.216:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: huwhy
+  password: Hdjbeyond@87
   defaultAutoCommit: false
   maxActive: 100
   initialSize: 1

@@ -72,7 +72,8 @@ public class MpConfigManager {
                     if (Strings.isNullOrEmpty(config.getJsApiTicket()) || config.getJsExpiresTime() > System.currentTimeMillis()) {
                         JsTicket ticked = JsApiTicketApi.getTicked(getAccessToken(id));
                         if (ticked != null) {
-                            config.setAccessToken(ticked.getTicket());
+                            config = get(id);
+                            config.setJsApiTicket(ticked.getTicket());
                             config.setJsExpiresTime(System.currentTimeMillis() + 720000L);
                             mpConfigDao.save(config);
                         }
