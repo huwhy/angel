@@ -42,7 +42,7 @@ public class IndexController extends BaseController {
     @Autowired
     private LinkManager linkManager;
 
-    @RequestMapping("/MP_verify_{text}.txt")
+    @RequestMapping({"/MP_verify_{text}.txt", "/item/MP_verify_{text}.txt"})
     public void mpVerify(@PathVariable String text, HttpServletResponse response) {
         printResponse(response, text);
     }
