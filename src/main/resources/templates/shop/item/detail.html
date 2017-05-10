@@ -6,6 +6,31 @@
   <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
   <link rel="stylesheet" href="/assets/shop/css/item.css"/>
   <script type="text/javascript" src="/assets/js/flexible.js"></script>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js?v=${v!}"></script>
+  <script type="text/javascript">
+    var wxConfig = {
+      debug: false,
+      appId: '${jsSign.appId!}',
+      timestamp: ${jsSign.timestamp!},
+      nonceStr: '${jsSign.nonceStr!}',
+      signature: '${jsSign.signature!}',
+      jsApiList: ${jsApi!"['onMenuShareTimeline', 'onMenuShareAppMessage', 'hideAllNonBaseMenuItem','chooseImage','uploadImage']"}
+    };
+    wx.config(wxConfig);
+    wx.ready(function () {
+      wx.onMenuShareTimeline({
+        title: "${item.title!}",
+        link: 'https://www.huwhy.cn/item/${item.id}.html',
+        imgUrl: "http://bee-img.ecrm.so/mifengyouhuo/icon.jpeg@300h_300w_1e_1c.src" // 分享图标
+      });
+      wx.onMenuShareAppMessage({
+        title: "${item.title!}",
+        link: 'https://www.huwhy.cn/item/${item.id}.html',
+        imgUrl: "http://bee-img.ecrm.so/mifengyouhuo/icon.jpeg@300h_300w_1e_1c.src" // 分享图标
+        desc: "不做无趣的转发，只为热爱而分享",
+      });
+    });
+  </script>
 </head>
 <body>
 <div class="app">

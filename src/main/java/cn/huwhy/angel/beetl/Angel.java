@@ -2,9 +2,13 @@ package cn.huwhy.angel.beetl;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.markdown4j.Markdown4jProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
+
+import cn.huwhy.angel.util.StringUtil;
 
 @Component
 public class Angel {
@@ -24,6 +28,21 @@ public class Angel {
             return "error";
         }
     }
+
+    /**
+     * 获取带域名参数的访问路径
+     * @param request
+     * @return
+     */
+    public static String getUrl(String domain, HttpServletRequest request) {
+        StringBuilder url = new StringBuilder(domain);
+        url.append(request.getRequestURI());
+        String queryString = request.getQueryString();
+        if (!StringUtil.isEmpty(queryString))
+            url.append("?").append(queryString);
+        return url.toString();
+    }
+
     public static void main(String[] args) {
         AntPathMatcher ant = new AntPathMatcher("/");
         System.out.println(ant.match("/mp/{id:\\d{6}}", "/mp/123456"));
