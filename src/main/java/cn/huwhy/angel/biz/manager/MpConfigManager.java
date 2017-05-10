@@ -16,8 +16,8 @@ import cn.huwhy.wx.sdk.aes.SHA1;
 import cn.huwhy.wx.sdk.api.AccessTokenApi;
 import cn.huwhy.wx.sdk.api.JsApiTicketApi;
 import cn.huwhy.wx.sdk.model.AccessToken;
+import cn.huwhy.wx.sdk.model.JsApiSignature;
 import cn.huwhy.wx.sdk.model.JsTicket;
-import cn.huwhy.wx.sdk.model.WxJsApiSignature;
 
 @Component
 public class MpConfigManager {
@@ -84,7 +84,7 @@ public class MpConfigManager {
         return "";
     }
 
-    public WxJsApiSignature getJsApiSignature(int id, String url) {
+    public JsApiSignature getJsApiSignature(int id, String url) {
         long timestamp = System.currentTimeMillis() / 1000;
         String noncestr = RandomUtils.getRandomStr();
         String jsapiTicket = getJsTicket(id);
@@ -96,7 +96,7 @@ public class MpConfigManager {
                     "url=" + url
             );
             MpConfig config = get(id);
-            WxJsApiSignature jsapiSignature = new WxJsApiSignature();
+            JsApiSignature jsapiSignature = new JsApiSignature();
             jsapiSignature.setAppId(config.getAppId());
             jsapiSignature.setTimestamp(timestamp);
             jsapiSignature.setNonceStr(noncestr);
