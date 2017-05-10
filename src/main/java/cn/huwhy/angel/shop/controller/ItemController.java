@@ -28,7 +28,7 @@ public class ItemController {
     private ItemImportService itemImportService;
     @Autowired
     private MpConfigManager   mpConfigManager;
-    private String domain = "https://www.huwhy.cn/";
+    private String domain = "https://www.huwhy.cn";
 
     @RequestMapping("{id:\\d+}.html")
     public String detail(HttpServletRequest request,
@@ -36,7 +36,7 @@ public class ItemController {
                          @PathVariable("id") Long id) {
         Item item = itemManager.get(id);
         map.addAttribute("item", item)
-                .addAttribute("jsSign", mpConfigManager.getJsApiSignature(2, Angel.getUrl(domain, request)));
+                .addAttribute("jsSign", mpConfigManager.getJsApiSignature(7, Angel.getUrl(domain, request)));
         return "shop/item/detail";
     }
 
