@@ -15,7 +15,7 @@
     #{jsApiTicket}, #{jsExpiresTime}, #{partnerId}, #{partnerKey}, #{certPath}, #{certPass}, #{salt}
     ) on duplicate key update secret=VALUES(secret), token=VALUES(token),
     aes_key=VALUES(aes_key), access_token=VALUES(access_token), expires_time=VALUES(expires_time),
-    js_api_ticket=VALUES(js_api_ticket), partner_id=VALUES(partner_id),
+    js_api_ticket=VALUES(js_api_ticket), js_expires_time=VALUES(js_expires_time),partner_id=VALUES(partner_id),
     partner_key=VALUES(partner_key), cert_path=VALUES(cert_path), cert_pass=VALUES(cert_pass)
   </insert>
 
