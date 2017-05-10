@@ -10,7 +10,7 @@
   <script type="text/javascript">
     var url = "${jsSign.url!}";
     var wxConfig = {
-      debug: true,
+      debug: false,
       appId: '${jsSign.appId!}',
       timestamp: ${jsSign.timestamp!},
       nonceStr: '${jsSign.nonceStr!}',
@@ -22,13 +22,13 @@
       wx.onMenuShareTimeline({
         title: "${item.title!}",
         link: 'https://www.huwhy.cn/item/${item.id}.html',
-        imgUrl: "http://bee-img.ecrm.so/mifengyouhuo/icon.jpeg@300h_300w_1e_1c.src" // 分享图标
+        imgUrl: "${item.mainImg!}" // 分享图标
       });
       wx.onMenuShareAppMessage({
         title: "${item.title!}",
         link: 'https://www.huwhy.cn/item/${item.id}.html',
-        imgUrl: "http://bee-img.ecrm.so/mifengyouhuo/icon.jpeg@300h_300w_1e_1c.src", // 分享图标
-        desc: "不做无趣的转发，只为热爱而分享",
+        imgUrl: "${item.mainImg!}", // 分享图标
+        desc: "不做无趣的转发，只为热爱而分享"
       });
     });
   </script>
