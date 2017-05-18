@@ -34,7 +34,6 @@ div{
 
 .app{
 	width: 10rem;
-  margin: 0 auto;
 }
 .box{
 	width: 10rem;
@@ -42,6 +41,17 @@ div{
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+
+.banner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 10rem;
+    height: 5.6rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
 .carousel{
 	width: 10rem;
     height: 8.666rem;
@@ -51,18 +61,45 @@ div{
     overflow: hidden;
     z-index: 1;
 }
-.box.title, .props, .icons, .desc{
+.box.shop_info, .props, .icons, .desc, .relates{
     padding: 0.266rem 0.333rem 0rem;
 }
-.box.title{
+.box.shop_info{
 	width: 10rem;
     position: relative;
 }
-.title  div{
+.shop_info  div{
 	font-size: 0.4rem;
     color: #2A2A2A;
     line-height: 1.5;
     margin: 0.01rem 0 0.266rem 0;
+}
+.tab_box{
+    padding: 0 0.333rem;
+}
+.tabs {
+    height: 1rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.tabs .tab{
+    display:-webkit-box;
+    display: flex;
+    flex: 1;
+    padding: 0.266rem 0.333rem 0.266rem;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+.tab .icon{
+    flex: 1;
+}
+.tab.active {
+    border-bottom: 1px solid #FFF;
+}
+.tab.active .icon{
+    color: #000;
 }
 .props {
     padding: 0rem 0.333rem 0rem;
@@ -111,7 +148,7 @@ div{
     width: 0.293rem;
     margin-right: 0.186rem;
 }
-.relate .icon {
+.relate .icon, .tab .icon {
     font-size: 0.293rem;
     line-height: 1.5;
     color: #979797;
@@ -123,11 +160,7 @@ div{
     height: 100%;
 }
 .desc{
-  padding-left: 0;
-  padding-right: 0;
-}
-.desc *{
-  max-width: 10rem;
+
 }
 .info-parameter {
 	font-size: 0.346rem;

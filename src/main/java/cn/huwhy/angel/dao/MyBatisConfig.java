@@ -26,8 +26,10 @@ import cn.huwhy.angel.po.MpArticle;
 import cn.huwhy.angel.po.MpConfig;
 import cn.huwhy.angel.po.MpReply;
 import cn.huwhy.angel.po.Param;
+import cn.huwhy.angel.po.ResourceUrl;
 import cn.huwhy.angel.po.Seo;
 import cn.huwhy.angel.po.User;
+import cn.huwhy.angel.po.UserUrl;
 
 /**
  * @author huwhy
@@ -69,7 +71,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         bean.setTypeAliases(new Class[]{
                 User.class, Category.class, Article.class,
                 MpArticle.class, MpConfig.class, Param.class, Seo.class,
-                Link.class, MpReply.class, Item.class
+                Link.class, MpReply.class, Item.class, UserUrl.class, ResourceUrl.class
         });
         bean.setConfigLocation(new ClassPathResource("cn/huwhy/angel/dao/sqlmap/sqlmap.xml"));
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();

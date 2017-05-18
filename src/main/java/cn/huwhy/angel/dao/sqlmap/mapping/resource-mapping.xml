@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huwhy.angel.dao.ResourceUrlDao">
+  <sql id="COLUMNS">
+    `id`, `title`, `url`, `role`, `display`
+  </sql>
+
+  <select id="all" resultType="ResourceUrl">
+    SELECT
+    <include refid="COLUMNS"/>
+    FROM resource_url where display=1
+  </select>
+
+  <select id="listUserResources" resultType="ResourceUrl">
+    select b.* from user_url a join resource_url b on a.resource_id=b.id
+    where a.id=#{userId}
+  </select>
+</mapper>

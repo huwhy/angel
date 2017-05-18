@@ -82,8 +82,8 @@ public class MvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/assets/**")
-                .addResourceLocations("classpath:/assets/");
+        registry.addResourceHandler("/assets/**", "/static/**")
+                .addResourceLocations("classpath:/assets/", "classpath:/static/");
     }
 
     @Bean(name = "beetlConfig")
