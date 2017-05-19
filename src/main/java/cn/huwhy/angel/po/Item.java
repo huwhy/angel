@@ -153,4 +153,14 @@ public class Item implements Serializable {
             return Collections.emptyList();
         return Splitter.on(',').splitToList(images);
     }
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
